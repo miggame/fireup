@@ -1,5 +1,5 @@
 module.exports = {
-    refreshTime: 3,
+    refreshTime: 2,
     enemySpeed: 1000000,
     enemyColor: [
         '#ffe148',

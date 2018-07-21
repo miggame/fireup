@@ -1,5 +1,6 @@
 let Observer = require('Observer');
 let GameCfg = require('GameCfg');
+let Util = require('Util');
 cc.Class({
     extends: Observer,
 
@@ -45,9 +46,15 @@ cc.Class({
         }
     },
 
-    initView(hp) {
+    initHp(hp) {
         this._hp = hp;
-        this.lblHp.string = this._hp;
+        this._refresh(this._hp);
+    },
+
+    _refresh(data) {
+        let colorStr = Util.getColorByData(data, GameCfg.enemyColor);
+        this.node.color = new cc.color(colorStr);
+        this.lblHp.string = data;
     },
 
     // 只在两个碰撞体开始接触时被调用一次
@@ -65,7 +72,7 @@ cc.Class({
             cc.game.pause();
         } else if (otherCollider.node.name === 'Bullet') {
             this._hp--;
-            this.lblHp.string = this._hp;
+            this._refresh(this._hp);
             if (this._hp <= 0) {
                 selfCollider.node.removeComponent(cc.RigidBody);
                 selfCollider.node.removeComponent(cc.PhysicsBoxCollider);

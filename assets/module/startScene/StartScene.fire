@@ -2192,6 +2192,13 @@
       "__uuid__": "b2ec3ade-e159-4ed0-a8ec-cbf76ca4632a"
     },
     "_level": [],
-    "_enemyPool": null
+    "enemyPreArr": [
+      {
+        "__uuid__": "1f06c22f-f6f9-4515-b88c-bcb58d1550d6"
+      },
+      {
+        "__uuid__": "7b102df0-cbb8-487b-b60b-bf1ba18b2f92"
+      }
+    ]
   }
 ]

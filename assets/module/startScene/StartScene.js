@@ -16,6 +16,7 @@ cc.Class({
         enemyPre: { displayName: 'enemyPre', default: null, type: cc.Prefab },
         _level: [],
         // _enemyPool: null
+        enemyPreArr: [cc.Prefab]
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -111,13 +112,71 @@ cc.Class({
         // if (!enemyPre) {
         //     enemyPre = cc.instantiate(this.enemyPre);
         // }
-        let enemyPre = cc.instantiate(this.enemyPre);
-        this.enemyLayer.addChild(enemyPre);
-        let w = cc.view.getVisibleSize().width;
-        let h = cc.view.getVisibleSize().height;
 
-        // enemyPre.h = h;
-        enemyPre.y = h;
-        enemyPre.getComponent('Enemy').initView(10);
+        // let enemyPre = cc.instantiate(this.enemyPre);
+        // this.enemyLayer.addChild(enemyPre);
+        // let w = cc.view.getVisibleSize().width;
+        // let h = cc.view.getVisibleSize().height;
+
+        // // enemyPre.h = h;
+        // enemyPre.y = h;
+        // enemyPre.getComponent('Enemy').initView(10);
+
+        if (this._level.length > 0) {
+            let type = this._level.shift().type;
+            // let enemyTypePre = cc.instantiate(this.enemyPreArr[type]);
+            // this.enemyLayer.addChild(enemyTypePre);
+            // let w = cc.view.getVisibleSize().width;
+            // let h = cc.view.getVisibleSize().height;
+            // enemyTypePre.y = h;
+            // enemyTypePre.getComponent('EnemyType').initHpByType(type);
+            let baseHp = Util.getEnemyHpByType(type, GameData.enemy);
+            // let num = Util.getEnemyNumByType(type, GameData.enemy);
+            // for (let i = 0; i < num; ++i) {
+            //     for (let i = 0; i < num; ++i) {
+            //         let enemyPre = cc.instantiate(this.enemyPre);
+            //         this.enemyLayer.addChild(enemyPre);
+            //         let w = cc.view.getVisibleSize().width;
+            //         let h = cc.view.getVisibleSize().height;
+
+            //         // enemyPre.h = h;
+            //         enemyPre.y = h;
+            //         enemyPre.x = Util.getItemPosX(i, num, w);
+            //         let hp = parseInt(baseHp * cc.random0To1() + baseHp);
+            //         enemyPre.getComponent('Enemy').initHp(hp);
+            //     }
+            // }
+            if (type === 0) {
+                let num = 4;
+                for (let i = 0; i < num; ++i) {
+                    let enemyPre = cc.instantiate(this.enemyPre);
+                    this.enemyLayer.addChild(enemyPre);
+                    let w = cc.view.getVisibleSize().width;
+                    let h = cc.view.getVisibleSize().height;
+
+                    // enemyPre.h = h;
+                    enemyPre.y = h;
+                    enemyPre.x = Util.getItemPosX(i, num, w);
+                    let hp = parseInt(baseHp * cc.random0To1() + baseHp);
+                    enemyPre.getComponent('Enemy').initHp(hp);
+                }
+            } else if (type === 1) {
+                let num = 5;
+                for (let i = 0; i < num; ++i) {
+                    let enemyPre = cc.instantiate(this.enemyPre);
+                    this.enemyLayer.addChild(enemyPre);
+                    let w = cc.view.getVisibleSize().width;
+                    let h = cc.view.getVisibleSize().height;
+
+                    // enemyPre.h = h;
+                    enemyPre.y = h;
+                    enemyPre.x = Util.getItemPosX(i, num, w);
+                    let hp = parseInt(baseHp * cc.random0To1() + baseHp);
+                    enemyPre.getComponent('Enemy').initHp(hp);
+                }
+            }
+        } else {
+            this.unschedule(this._createEnemy);
+        }
     }
 });

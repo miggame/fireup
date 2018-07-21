@@ -35,17 +35,17 @@ module.exports = {
         0: {
             type: 0,
             num: 4,
-            hp: 100
+            hp: 20
         },
         1: {
             type: 1,
             num: 5,
-            hp: 200
+            hp: 40
         },
         2: {
             type: 2,
             num: 12,
-            hp: 300
+            hp: 60
         }
     },
     level: {
