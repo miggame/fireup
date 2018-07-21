@@ -6,7 +6,8 @@ cc.Class({
     extends: Observer,
 
     properties: {
-
+        _enemyPool: null,
+        _removeFlag: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -21,7 +22,7 @@ cc.Class({
     },
     onLoad() {
         this._initMsg();
-
+        this._removeFlag = false;
     },
 
     start() {
@@ -33,7 +34,11 @@ cc.Class({
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y < -h) {
-            this.node.destroy();
+            // this.node.destroy();
+            if (this._removeFlag === false) {
+                this._removeFlag = true;
+                this._enemyPool.put(this.node);
+            }
         }
     },
 
@@ -45,6 +50,10 @@ cc.Class({
             item.getComponent('EnemyItem').initHp(data);
         }
     },
+
+    initView(pool) {
+        this._enemyPool = pool;
+    }
 
 
 });

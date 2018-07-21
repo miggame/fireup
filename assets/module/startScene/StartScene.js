@@ -14,7 +14,8 @@ cc.Class({
         _player: null,
         enemyPreArr: [cc.Prefab],
         enemyLayer: { displayName: 'enemyLayer', default: null, type: cc.Node },
-        _level: []
+        _level: [],
+        _enemyPool: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,6 +27,7 @@ cc.Class({
 
     _onMsg(msg, data) {
         if (msg === GameLocalMsg.Msg.GameStart) {
+            this._enemyPool = new cc.NodePool('EnemyPool');
             this._startEnemy();
         }
     },
@@ -97,11 +99,16 @@ cc.Class({
     _createEnemy() {
         if (this._level.length > 0) {
             let type = this._level.shift().type;
-            let enemyPre = cc.instantiate(this.enemyPreArr[type]);
+            let enemyPre = this._enemyPool.get();
+            if (!enemyPre) {
+                enemyPre = cc.instantiate(this.enemyPreArr[type]);
+            }
+            // let enemyPre = cc.instantiate(this.enemyPreArr[type]);
             this.enemyLayer.addChild(enemyPre);
             let h = cc.view.getVisibleSize().height;
             enemyPre.y = h;
             enemyPre.getComponent('Enemy').initHpByType(type);
+            enemyPre.getComponent('Enemy').initView(this._enemyPool);
         } else {
             this.unschedule(this._createEnemy);
         }
