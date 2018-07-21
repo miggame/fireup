@@ -30,7 +30,7 @@ cc.Class({
 
     initView(pool) {
         this._bulletPool = pool;
-        this.schedule(this._refreshBullet, 0.1);
+        // this.schedule(this._refreshBullet, 0.1);
     },
 
     start() {
@@ -38,30 +38,21 @@ cc.Class({
     },
 
     update(dt) {
-        // this.node.y += GameCfg.bulletSpeed * dt;
-        // console.log('this.node.y: ', this.node.y);
-        // let w = cc.view.getVisibleSize().width;
-        // let h = cc.view.getVisibleSize().height;
-        // if (this.node.y > h) {
-        //     // this.node.destroy();
-        //     if (this._removeFlag === false) {
-        //         this._removeFlag = true;
-        //         this._bulletPool.put(this.node);
-        //     }
-        // }
-    },
-
-    _refreshBullet() {
-        this.node.y += GameCfg.bulletSpeed;
-        console.log('this.node.y: ', this.node.y);
+        // let body = this.node.getComponent(cc.RigidBody);
+        // let speed = body.linearVelocity;
+        // speed.y = dt * GameCfg.bulletSpeed;
+        // body.linearVelocity = speed;
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y > h) {
-            // this.node.destroy();
             if (this._removeFlag === false) {
                 this._removeFlag = true;
-                this._bulletPool.put(this.node);
+                // this.node.removeComponent(cc.RigidBody);
+                // this.node.removeComponent(cc.PhysicsCircleCollider);
+                // this._bulletPool.put(this.node);
+                this.node.destroy();
             }
         }
-    }
+    },
+
 });

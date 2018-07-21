@@ -12,10 +12,10 @@ cc.Class({
         tutorLayer: { displayName: 'tutorLayer', default: null, type: cc.Node },
         _startFlag: false,
         _player: null,
-        enemyPreArr: [cc.Prefab],
         enemyLayer: { displayName: 'enemyLayer', default: null, type: cc.Node },
+        enemyPre: { displayName: 'enemyPre', default: null, type: cc.Prefab },
         _level: [],
-        _enemyPool: null
+        // _enemyPool: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -27,11 +27,20 @@ cc.Class({
 
     _onMsg(msg, data) {
         if (msg === GameLocalMsg.Msg.GameStart) {
-            this._enemyPool = new cc.NodePool('EnemyPool');
+            // this._enemyPool = new cc.NodePool('EnemyPool');
             this._startEnemy();
         }
     },
     onLoad() {
+
+        cc.director.getPhysicsManager().enabled = true;
+        cc.director.getPhysicsManager().debugDrawFlags = cc.PhysicsManager.DrawBits.e_aabbBit |
+            cc.PhysicsManager.DrawBits.e_pairBit |
+            cc.PhysicsManager.DrawBits.e_centerOfMassBit |
+            cc.PhysicsManager.DrawBits.e_jointBit |
+            cc.PhysicsManager.DrawBits.e_shapeBit
+            ;
+
         this._initMsg();
         this._initView();
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
@@ -97,20 +106,18 @@ cc.Class({
     },
 
     _createEnemy() {
-        if (this._level.length > 0) {
-            let type = this._level.shift().type;
-            let enemyPre = this._enemyPool.get();
-            if (!enemyPre) {
-                enemyPre = cc.instantiate(this.enemyPreArr[type]);
-            }
-            // let enemyPre = cc.instantiate(this.enemyPreArr[type]);
-            this.enemyLayer.addChild(enemyPre);
-            let h = cc.view.getVisibleSize().height;
-            enemyPre.y = h;
-            enemyPre.getComponent('Enemy').initHpByType(type);
-            enemyPre.getComponent('Enemy').initView(this._enemyPool);
-        } else {
-            this.unschedule(this._createEnemy);
-        }
+
+        // let enemyPre = this._enemyPool.get();
+        // if (!enemyPre) {
+        //     enemyPre = cc.instantiate(this.enemyPre);
+        // }
+        let enemyPre = cc.instantiate(this.enemyPre);
+        this.enemyLayer.addChild(enemyPre);
+        let w = cc.view.getVisibleSize().width;
+        let h = cc.view.getVisibleSize().height;
+
+        // enemyPre.h = h;
+        enemyPre.y = h;
+        enemyPre.getComponent('Enemy').initView(10);
     }
 });

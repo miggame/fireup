@@ -18,7 +18,8 @@ cc.Class({
 
     _onMsg(msg, data) {
         if (msg === GameLocalMsg.Msg.GameStart) {
-            this._bulletPool = new cc.NodePool('BulletPool');
+
+            // this.schedule(this._createBullet, GameCfg.bulletRefreshTime);
             this.schedule(this._createBullet, GameCfg.bulletRefreshTime);
         } else if (msg === GameLocalMsg.Msg.Hit) {
             console.log('hit');
@@ -29,6 +30,7 @@ cc.Class({
     },
     onLoad() {
         this._initMsg();
+        // this._bulletPool = new cc.NodePool('BulletPool');
         // this.schedule(this._createBullet, GameCfg.bulletRefreshTime);
     },
 
@@ -39,14 +41,15 @@ cc.Class({
     // update (dt) {},
 
     _createBullet() {
-        let bulletPre = this._bulletPool.get();
-        if (!bulletPre) {
-            bulletPre = cc.instantiate(this.bulletPre);
-        }
-        // bulletPre = cc.instantiate(this.bulletPre);
-        this.node.parent.addChild(bulletPre);
-        bulletPre.y = this.node.height / 2 + this.node.y;
-        bulletPre.x = this.node.x;
-        bulletPre.getComponent('Bullet').initView(this._bulletPool);
+        // let bulletPre = this._bulletPool.get();
+        // if (!bulletPre) {
+        //     bulletPre = cc.instantiate(this.bulletPre);
+        // }
+        let bulletPre = cc.instantiate(this.bulletPre);
+        // this.node.parent.addChild(bulletPre);
+        bulletPre.y = this.node.height / 2 + bulletPre.height / 2;
+        // bulletPre.x = this.node.x;
+        this.node.addChild(bulletPre);
+        // bulletPre.getComponent('Bullet').initView(this._bulletPool);
     }
 });
