@@ -2185,20 +2185,13 @@
     },
     "_startFlag": false,
     "_player": null,
-    "enemyPreArr": [
-      {
-        "__uuid__": "7cd9a0d1-72a2-4025-8d55-0a9701647714"
-      },
-      {
-        "__uuid__": "2285d006-b409-41a9-b5d5-d8831b02a88a"
-      },
-      {
-        "__uuid__": "a84ab3a6-f084-44a1-8f6d-170014dba758"
-      }
-    ],
     "enemyLayer": {
       "__id__": 52
     },
-    "_level": []
+    "_level": [],
+    "enemyPre": {
+      "__uuid__": "c55f592f-34da-4174-909a-6e6ee55ae949"
+    },
+    "_enemyPool": null
   }
 ]

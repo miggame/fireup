@@ -1,19 +1,17 @@
-let GameCfg = require('GameCfg');
-let GameData = require('GameData');
-let Util = require('Util');
 let Observer = require('Observer');
+let GameCfg = require('GameCfg');
+let Util = require('Util');
 cc.Class({
     extends: Observer,
 
     properties: {
+        lblHp: { displayName: 'lblHp', default: null, type: cc.Label },
         _enemyPool: null
     },
 
     // LIFE-CYCLE CALLBACKS:
     _getMsgList() {
-        return [
-
-        ];
+        return [];
     },
 
     _onMsg(msg, data) {
@@ -21,6 +19,9 @@ cc.Class({
     },
     onLoad() {
         this._initMsg();
+    },
+
+    start() {
 
     },
 
@@ -28,28 +29,36 @@ cc.Class({
         this._enemyPool = pool;
     },
 
-    start() {
-
-    },
-
     update(dt) {
-        this.node.y -= dt * GameCfg.enemySpeed;
+        this.node.y += -dt * GameCfg.enemySpeed;
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y < -h) {
-            // this.node.destroy();
+            console.log('this.node.y: ', this.node.y);
             this._enemyPool.put(this.node);
         }
     },
 
-    initHpByType(type) {
-        let baseHp = Util.getEnemyHpByType(type, GameData.enemy);
-        // this._hp = parseInt(baseHp * cc.random0To1() + baseHp);
-        for (const item of this.node.children) {
-            let data = parseInt(baseHp * cc.random0To1() + baseHp);
-            item.getComponent('EnemyItem').initHp(data);
+    initHp(hp) {
+        this._hp = hp;
+        this._refresh(this._hp);
+    },
+
+    minusHp() {
+        this._hp--;
+        this._refresh(this._hp);
+    },
+
+    _refresh(data) {
+        let colorStr = Util.getColorByData(data, GameCfg.enemyColor);
+        this.node.color = new cc.color(colorStr);
+        this.lblHp.string = data;
+        if (data <= 0) {
+            this._enemyPool.put(this.node);
         }
     },
 
+    // onCollisionEnter(other, self) {
 
+    // }
 });

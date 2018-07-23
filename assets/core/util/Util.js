@@ -23,5 +23,21 @@ module.exports = {
 
     getColorByData(data, colorArr) {
         return colorArr[parseInt(data / 100)];
+    },
+
+    getItemPosX(index, total, w) {
+        let perWidth = w / total;
+        return -w / 2 + w / total * 0.5 + w / total * index;
+    },
+
+    getEnemyNumByType(type, obj) {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                const element = obj[key];
+                if (element.type === type) {
+                    return element.num;
+                }
+            }
+        }
     }
 }

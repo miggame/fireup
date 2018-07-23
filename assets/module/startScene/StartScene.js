@@ -12,12 +12,12 @@ cc.Class({
         tutorLayer: { displayName: 'tutorLayer', default: null, type: cc.Node },
         _startFlag: false,
         _player: null,
-        enemyPreArr: [cc.Prefab],
+        // enemyPreArr: [cc.Prefab],
         enemyLayer: { displayName: 'enemyLayer', default: null, type: cc.Node },
         _level: [],
-        _enemyPool0: null,
-        _enemyPool1: null,
-        _enemyPool2: null
+        enemyPre: { displayName: 'enemyPre', default: null, type: cc.Prefab },
+        _enemyPool: null,
+        // camera: { displayName: 'camera', default: null, type: cc.Node },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -38,22 +38,15 @@ cc.Class({
 
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
+        manager.enabledDebugDraw = true;
+
+
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
 
-        this._enemyPool0 = new cc.NodePool('EnemyPool0');
-        this._enemyPool1 = new cc.NodePool('EnemyPool1');
-        this._enemyPool2 = new cc.NodePool('EnemyPool2');
-        for (let i = 0; i < 4; ++i) {
-            let enemy0 = cc.instantiate(this.enemyPreArr[0]);
-            this._enemyPool0.put(enemy0);
-        }
-        for (let j = 0; j < 4; ++j) {
-            let enemy1 = cc.instantiate(this.enemyPreArr[1]);
-            this._enemyPool1.put(enemy1);
-        }
-        for (let k = 0; k < 4; ++k) {
-            let enemy2 = cc.instantiate(this.enemyPreArr[2]);
-            this._enemyPool2.put(enemy2);
+        this._enemyPool = new cc.NodePool('EnemyPool');
+        for (let i = 0; i < 12; ++i) {
+            let enemyPreTemp = cc.instantiate(this.enemyPre);
+            this._enemyPool.put(enemyPreTemp);
         }
     },
 
@@ -117,30 +110,77 @@ cc.Class({
     },
 
     _createEnemy() {
-        // if (this._level.length > 0) {
-        //     let type = this._level.shift().type;
-        //     let enemyPre = cc.instantiate(this.enemyPreArr[type]);
-        //     this.enemyLayer.addChild(enemyPre);
-        //     let h = cc.view.getVisibleSize().height;
-        //     enemyPre.y = h;
-        //     enemyPre.getComponent('Enemy').initHpByType(type);
-        // } else {
-        //     this.unschedule(this._createEnemy);
-        // }
+        if (this._level.length <= 0) {
+            this.unschedule(this._createEnemy);
+            return;
+        } else {
 
-        if (this._level.length > 0) {
-            let enemyPre = null;
             let type = this._level.shift().type;
-            if (this['_enemyPool' + type].size > 0) {
-                enemyPre = this['_enemyPool' + type].get();
-            } else {
-                enemyPre = cc.instantiate(this.enemyPreArr[type]);
-            }
-            this.enemyLayer.addChild(enemyPre);
+            let baseHp = Util.getEnemyHpByType(type, GameData.enemy);
+            let num = Util.getEnemyNumByType(type, GameData.enemy);
+            let w = cc.view.getVisibleSize().width;
             let h = cc.view.getVisibleSize().height;
-            enemyPre.y = h;
-            enemyPre.getComponent('Enemy').initView(this['_enemyPool' + type]);
-            enemyPre.getComponent('Enemy').initHpByType(type);
+            for (let i = 0; i < num; ++i) {
+                let enemyPre = this._enemyPool.get();
+                if (!enemyPre) {
+                    enemyPre = cc.instantiate(this.enemyPre);
+                }
+                this.enemyLayer.addChild(enemyPre);
+                enemyPre.width = w / num;
+                enemyPre.height = w / num;
+                enemyPre.y = h;
+                enemyPre.x = Util.getItemPosX(i, num, w);
+                let hp = parseInt(baseHp * cc.random0To1() + baseHp);
+                enemyPre.getComponent('Enemy').initView(this._enemyPool);
+                enemyPre.getComponent('Enemy').initHp(hp);
+            }
+            if (this._player.width !== w / num) {
+                this._player.width = w / num;
+                this._player.height = w / num;
+                this._player.getComponent(cc.BoxCollider).width = w / num * 0.9;
+                this._player.getComponent(cc.BoxCollider).height = h / num * 0.9;
+            }
+
+
+            // if (type === 0) {
+            //     let num = 4;
+            //     for (let i = 0; i < num; ++i) {
+            //         let enemyPre = this._enemyPool.get();
+            //         if (!enemyPre) {
+            //             enemyPre = cc.instantiate(this.enemyPre);
+            //         }
+            //         this.enemyLayer.addChild(enemyPre);
+            //         let w = cc.view.getVisibleSize().width;
+            //         let h = cc.view.getVisibleSize().height;
+            //         enemyPre.width = w / num;
+            //         enemyPre.height = w / num;
+            //         enemyPre.y = h;
+            //         enemyPre.x = Util.getItemPosX(i, num, w);
+            //         let hp = parseInt(baseHp * cc.random0To1() + baseHp);
+            //         enemyPre.getComponent('Enemy').initView(this._enemyPool);
+            //         enemyPre.getComponent('Enemy').initHp(hp);
+            //     }
+            // } else if (type === 1) {
+            //     let num = 5;
+            //     for (let i = 0; i < num; ++i) {
+            //         let enemyPre1 = this._enemyPool.get();
+            //         if (!enemyPre1) {
+            //             enemyPre1 = cc.instantiate(this.enemyPre);
+            //         }
+            //         this.enemyLayer.addChild(enemyPre1);
+            //         let w = cc.view.getVisibleSize().width;
+            //         let h = cc.view.getVisibleSize().height;
+            //         enemyPre1.width = w / num;
+            //         enemyPre1.height = w / num;
+            //         enemyPre1.getComponent(cc.BoxCollider).size.width = enemyPre1.width;
+            //         enemyPre1.getComponent(cc.BoxCollider).size.height = enemyPre1.height;
+            //         enemyPre1.y = h;
+            //         enemyPre1.x = Util.getItemPosX(i, num, w);
+            //         let hp = parseInt(baseHp * cc.random0To1() + baseHp);
+            //         enemyPre1.getComponent('Enemy').initView(this._enemyPool);
+            //         enemyPre1.getComponent('Enemy').initHp(hp);
+            //     }
+            // }
         }
     }
 });

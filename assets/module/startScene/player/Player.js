@@ -53,5 +53,13 @@ cc.Class({
         bulletPre.x = this.node.x;
         bulletPre.y = this.node.y + this.node.height / 2;
         bulletPre.getComponent('Bullet').initView(this._bulletPool);
+    },
+
+    onCollisionEnter(other, self) {
+        this._bulletPool.put(this.node);
+        if (other.node.name === 'Enemy') {
+            this.node.destroy();
+            cc.game.pause();
+        }
     }
 });

@@ -45,11 +45,9 @@ cc.Class({
     },
 
     onCollisionEnter(other, self) {
-        console.log('other: ', other.node);
-        // let data = {
-        //     otherUuid: other.node.uuid,
-        //     selfUuid: self.node.uuid
-        // };
-        // ObserverMgr.dispatchMsg(GameLocalMsg.Msg.Hit, data);
+        this._bulletPool.put(this.node);
+        if (other.node.name === 'Enemy') {
+            other.node.getComponent('Enemy').minusHp();
+        }
     }
 });
