@@ -21,11 +21,16 @@ cc.Class({
 
     onLoad() {
         this._initMsg();
-        this._removeFlag = true;
+        this._removeFlag = false;
         // this.node.getComponent(cc.RigidBody).enabledContactListener = true;
     },
 
     start() {
+
+    },
+
+    initView(pool) {
+        this._enemyPool = pool;
 
     },
 
@@ -37,11 +42,14 @@ cc.Class({
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y < -h) {
+            console.log('donw h');
             if (this._removeFlag === false) {
                 this._removeFlag = true;
-                this.node.removeComponent(cc.RigidBody)
-                this.node.removeComponent(cc.PhysicsBoxCollider);
-                this.node.destroy();
+                // this.node.removeComponent(cc.RigidBody)
+                // this.node.removeComponent(cc.PhysicsBoxCollider);
+                // this.node.destroy();
+                console.log('this._enemyPool: ', this._enemyPool);
+                this._enemyPool.put(this.node);
             }
         }
     },
@@ -59,9 +67,9 @@ cc.Class({
 
     // 只在两个碰撞体开始接触时被调用一次
     onBeginContact(contact, selfCollider, otherCollider) {
-        console.log('开始');
+        // console.log('开始');
 
-        console.log('otherCollider: ', otherCollider.node.name);
+        // console.log('otherCollider: ', otherCollider.node.name);
 
         if (otherCollider.node.name === 'Player') {
 
@@ -69,14 +77,15 @@ cc.Class({
             selfCollider.node.removeComponent(cc.PhysicsBoxCollider);
             selfCollider.node.destroy();
 
-            cc.game.pause();
+            // cc.game.pause();
         } else if (otherCollider.node.name === 'Bullet') {
             this._hp--;
             this._refresh(this._hp);
             if (this._hp <= 0) {
-                selfCollider.node.removeComponent(cc.RigidBody);
-                selfCollider.node.removeComponent(cc.PhysicsBoxCollider);
-                selfCollider.node.destroy();
+                // selfCollider.node.removeComponent(cc.RigidBody);
+                // selfCollider.node.removeComponent(cc.PhysicsBoxCollider);
+                // selfCollider.node.destroy();
+                // this._enemyPool.put(selfCollider.node);
             }
             otherCollider.node.removeComponent(cc.RigidBody);
             otherCollider.node.removeComponent(cc.PhysicsCircleCollider);
@@ -88,7 +97,7 @@ cc.Class({
     // 只在两个碰撞体结束接触时被调用一次
     onEndContact(contact, selfCollider, otherCollider) {
 
-        console.log('结束');
+        // console.log('结束');
     },
 
     // 每次将要处理碰撞体接触逻辑时被调用
