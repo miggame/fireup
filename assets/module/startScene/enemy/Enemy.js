@@ -6,7 +6,7 @@ cc.Class({
     extends: Observer,
 
     properties: {
-
+        _enemyPool: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -24,6 +24,10 @@ cc.Class({
 
     },
 
+    initView(pool) {
+        this._enemyPool = pool;
+    },
+
     start() {
 
     },
@@ -33,7 +37,8 @@ cc.Class({
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y < -h) {
-            this.node.destroy();
+            // this.node.destroy();
+            this._enemyPool.put(this.node);
         }
     },
 

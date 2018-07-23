@@ -28,8 +28,6 @@ cc.Class({
 
     onLoad() {
         this._initMsg();
-        let manager = cc.director.getCollisionManager();
-        manager.enabled = true;
     },
 
     start() {
@@ -49,13 +47,13 @@ cc.Class({
         this.lblHp.string = data;
     },
 
-    onCollisionEnter(other, self) {
-        console.log('other: ', other.node);
-        let data = {
-            otherUuid: other.node.uuid,
-            selfUuid: self.node.uuid
-        };
-        ObserverMgr.dispatchMsg(GameLocalMsg.Msg.Hit, data);
-    }
+    // onCollisionEnter(other, self) {
+    //     console.log('other: ', other.node);
+    //     let data = {
+    //         otherUuid: other.node.uuid,
+    //         selfUuid: self.node.uuid
+    //     };
+    //     ObserverMgr.dispatchMsg(GameLocalMsg.Msg.Hit, data);
+    // }
 
 });

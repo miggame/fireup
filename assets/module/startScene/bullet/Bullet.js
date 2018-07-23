@@ -5,6 +5,7 @@ cc.Class({
 
     properties: {
         spBullet: { displayName: 'spBullet', default: null, type: cc.Sprite },
+        _bulletPool: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -25,6 +26,10 @@ cc.Class({
         this._initMsg();
     },
 
+    initView(pool) {
+        this._bulletPool = pool;
+    },
+
     start() {
 
     },
@@ -34,7 +39,17 @@ cc.Class({
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y > h) {
-            this.node.destroy();
+            // this.node.destroy();
+            this._bulletPool.put(this.node);
         }
     },
+
+    onCollisionEnter(other, self) {
+        console.log('other: ', other.node);
+        // let data = {
+        //     otherUuid: other.node.uuid,
+        //     selfUuid: self.node.uuid
+        // };
+        // ObserverMgr.dispatchMsg(GameLocalMsg.Msg.Hit, data);
+    }
 });

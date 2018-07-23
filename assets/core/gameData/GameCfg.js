@@ -7,7 +7,7 @@ module.exports = {
         '#ff403f',
         '#ff8d51'
     ],
-    bulletSpeed: 500,
-    bulletRefreshTime: 1
+    bulletSpeed: 1000,
+    bulletRefreshTime: 0.2
 
 }
