@@ -89,7 +89,7 @@
       "__id__": 7
     },
     "_id": "",
-    "_opacity": 120,
+    "_opacity": 0,
     "_color": {
       "__type__": "cc.Color",
       "r": 0,

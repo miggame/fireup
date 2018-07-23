@@ -2,6 +2,7 @@ window.GameLocalMsg = {
     Msg: {
         GameStart: 'GameLocalMsg.Msg.GameStart',
         GameOver: 'GameLocalMsg.Msg.GameOver',
-        RefreshScore: 'GameLocalMsg.Msg.RefreshScore'
+        RefreshScore: 'GameLocalMsg.Msg.RefreshScore',
+        ExplodePos: 'GameLocalMsg.Msg.ExplodePos'
     }
 }

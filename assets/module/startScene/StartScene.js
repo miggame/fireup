@@ -24,6 +24,9 @@ cc.Class({
         lblTotalScore: { displayName: 'lblTotalScore', default: null, type: cc.Label },
         overPre: { displayName: 'overPre', default: null, type: cc.Prefab },
         addNode: { displayName: 'addNode', default: null, type: cc.Node },
+        particleLayer: { displayName: 'particleLayer', default: null, type: cc.Node },
+        explodePre: { displayName: 'explodePre', default: null, type: cc.Prefab },
+        shopPre: { displayName: 'shopPre', default: null, type: cc.Prefab },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -31,7 +34,8 @@ cc.Class({
         return [
             GameLocalMsg.Msg.GameStart,
             GameLocalMsg.Msg.RefreshScore,
-            GameLocalMsg.Msg.GameOver
+            GameLocalMsg.Msg.GameOver,
+            GameLocalMsg.Msg.ExplodePos
         ];
     },
 
@@ -52,6 +56,11 @@ cc.Class({
                 cc.sys.localStorage.setItem('bestScore', this._totalScore);
             }
             this.showOver();
+        } else if (msg === GameLocalMsg.Msg.ExplodePos) {
+            let pos = data.pos;
+            let particleNode = cc.instantiate(this.explodePre);
+            this.particleLayer.addChild(particleNode);
+            particleNode.position = pos;
         }
     },
     onLoad() {
@@ -60,8 +69,8 @@ cc.Class({
 
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        manager.enabledDebugDraw = true;
-        manager.enabledDrawBoundingBox = true;
+        // manager.enabledDebugDraw = true;
+        // manager.enabledDrawBoundingBox = true;
 
 
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
@@ -184,6 +193,17 @@ cc.Class({
             this.addNode.addChild(root);
             let script = ui.getComponent('Over');
             script.showTotalAndBestScore(this._totalScore, this._bestScore);
+        }.bind(this));
+    },
+
+    onBtnClickToShop() {
+        UIMgr.createPrefab(this.shopPre, function (root, ui) {
+            this.addNode.addChild(root);
+            let script = ui.getComponent('Shop');
+            let data = {
+                len: 7
+            };
+            script.initView(data);
         }.bind(this));
     }
 });

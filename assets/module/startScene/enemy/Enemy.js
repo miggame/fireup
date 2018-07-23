@@ -2,12 +2,14 @@ let Observer = require('Observer');
 let GameCfg = require('GameCfg');
 let Util = require('Util');
 let ObserverMgr = require('ObserverMgr');
+let UIMgr = require('UIMgr');
 cc.Class({
     extends: Observer,
 
     properties: {
         lblHp: { displayName: 'lblHp', default: null, type: cc.Label },
-        _enemyPool: null
+        _enemyPool: null,
+        // explodePre: { displayName: 'explodePre', default: null, type: cc.Prefab },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -20,6 +22,7 @@ cc.Class({
     },
     onLoad() {
         this._initMsg();
+        // this.explodeNode.active = false;
     },
 
     start() {
@@ -59,6 +62,10 @@ cc.Class({
         this.node.color = new cc.color(colorStr);
         this.lblHp.string = data;
         if (data <= 0) {
+            let pos = {
+                pos: this.node.position
+            };
+            ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ExplodePos, pos);
             this._enemyPool.put(this.node);
         }
     },

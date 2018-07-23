@@ -1,4 +1,6 @@
 let Observer = require('Observer');
+let UIMgr = require('UIMgr');
+
 cc.Class({
     extends: Observer,
 
@@ -27,6 +29,7 @@ cc.Class({
     // update (dt) {},
 
     onBtnClickToReplay() {
+        UIMgr.destroyUI(this);
         cc.director.loadScene('StartScene');
     },
 
