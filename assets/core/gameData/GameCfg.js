@@ -8,6 +8,5 @@ module.exports = {
         '#ff8d51'
     ],
     bulletSpeed: 1000,
-    bulletRefreshTime: 0.2
-
+    bulletRefreshTime: 0.1,
 }

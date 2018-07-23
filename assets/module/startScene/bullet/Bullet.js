@@ -5,25 +5,25 @@ cc.Class({
 
     properties: {
         spBullet: { displayName: 'spBullet', default: null, type: cc.Sprite },
-        _bulletPool: null
+        _bulletPool: null,
+        // _overFlag: false
     },
 
     // LIFE-CYCLE CALLBACKS:
     _getMsgList() {
         return [
-            GameLocalMsg.Msg.Hit
+            GameLocalMsg.Msg.GameOver
         ];
     },
 
     _onMsg(msg, data) {
-        if (msg === GameLocalMsg.Msg.Hit) {
-            if (this.node.uuid === data.otherUuid) {
-                this.node.destroy();
-            }
+        if (msg === GameLocalMsg.Msg.Over) {
+            // this._overFlag = true;
         }
     },
     onLoad() {
         this._initMsg();
+        this._overFlag = false;
     },
 
     initView(pool) {
@@ -38,8 +38,7 @@ cc.Class({
         this.node.y += GameCfg.bulletSpeed * dt;
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
-        if (this.node.y > h) {
-            // this.node.destroy();
+        if (this.node.y > h / 2) {
             this._bulletPool.put(this.node);
         }
     },

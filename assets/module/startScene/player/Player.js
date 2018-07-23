@@ -1,5 +1,6 @@
 let GameCfg = require('GameCfg');
 let Observer = require('Observer');
+let ObserverMgr = require('ObserverMgr');
 cc.Class({
     extends: Observer,
 
@@ -56,10 +57,12 @@ cc.Class({
     },
 
     onCollisionEnter(other, self) {
-        this._bulletPool.put(this.node);
+        // this._bulletPool.put(this.node);
         if (other.node.name === 'Enemy') {
-            this.node.destroy();
-            cc.game.pause();
+            this.node.removeAllChildren();
+            this.node.removeFromParent();
+            // cc.game.pause();
+            ObserverMgr.dispatchMsg(GameLocalMsg.Msg.GameOver, null);
         }
     }
 });

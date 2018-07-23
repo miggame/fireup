@@ -1,6 +1,7 @@
 let Observer = require('Observer');
 let GameCfg = require('GameCfg');
 let Util = require('Util');
+let ObserverMgr = require('ObserverMgr');
 cc.Class({
     extends: Observer,
 
@@ -47,6 +48,10 @@ cc.Class({
     minusHp() {
         this._hp--;
         this._refresh(this._hp);
+        let data = {
+            demage: 1
+        };
+        ObserverMgr.dispatchMsg(GameLocalMsg.Msg.RefreshScore, data);
     },
 
     _refresh(data) {
@@ -57,8 +62,4 @@ cc.Class({
             this._enemyPool.put(this.node);
         }
     },
-
-    // onCollisionEnter(other, self) {
-
-    // }
 });

@@ -3,6 +3,7 @@ let ObserverMgr = require('ObserverMgr');
 let GameCfg = require('GameCfg');
 let GameData = require('GameData');
 let Util = require('Util');
+let UIMgr = require('UIMgr');
 cc.Class({
     extends: Observer,
 
@@ -12,24 +13,45 @@ cc.Class({
         tutorLayer: { displayName: 'tutorLayer', default: null, type: cc.Node },
         _startFlag: false,
         _player: null,
-        // enemyPreArr: [cc.Prefab],
         enemyLayer: { displayName: 'enemyLayer', default: null, type: cc.Node },
         _level: [],
         enemyPre: { displayName: 'enemyPre', default: null, type: cc.Prefab },
         _enemyPool: null,
-        // camera: { displayName: 'camera', default: null, type: cc.Node },
+        lblBestScore: { displayName: 'lblBestScore', default: null, type: cc.Label },
+        uiLayer: { displayName: 'uiLayer', default: null, type: cc.Node },
+        _totalScore: null,
+        _bestScore: null,
+        lblTotalScore: { displayName: 'lblTotalScore', default: null, type: cc.Label },
+        overPre: { displayName: 'overPre', default: null, type: cc.Prefab },
+        addNode: { displayName: 'addNode', default: null, type: cc.Node },
     },
 
     // LIFE-CYCLE CALLBACKS:
     _getMsgList() {
         return [
-            GameLocalMsg.Msg.GameStart
+            GameLocalMsg.Msg.GameStart,
+            GameLocalMsg.Msg.RefreshScore,
+            GameLocalMsg.Msg.GameOver
         ];
     },
 
     _onMsg(msg, data) {
         if (msg === GameLocalMsg.Msg.GameStart) {
+            this.lblTotalScore.node.active = true;
+            this._totalScore = 0;
+            this.lblTotalScore.string = this._totalScore;
+            this.uiLayer.active = false;
             this._startEnemy();
+        } else if (msg === GameLocalMsg.Msg.RefreshScore) {
+            let tempScore = data.demage;
+            this._totalScore = this._totalScore + tempScore;
+            this.lblTotalScore.string = this._totalScore;
+        } else if (msg === GameLocalMsg.Msg.GameOver) {
+            if (this._bestScore <= this._totalScore) {
+                this._bestScore = this._totalScore;
+                cc.sys.localStorage.setItem('bestScore', this._totalScore);
+            }
+            this.showOver();
         }
     },
     onLoad() {
@@ -39,6 +61,7 @@ cc.Class({
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
         manager.enabledDebugDraw = true;
+        manager.enabledDrawBoundingBox = true;
 
 
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
@@ -59,6 +82,20 @@ cc.Class({
     _initView() {
         this._initPlayer();
         this._initTutor();
+        this._initUI();
+    },
+
+    _initUI() {
+        this.lblTotalScore.node.active = false;
+        this._bestScore = cc.sys.localStorage.getItem('bestScore');
+        console.log(this._bestScore);
+        if (this._bestScore === null || this._bestScore === undefined) {
+            this._bestScore = 0;
+            this.uiLayer.active = false;
+        } else {
+            this.uiLayer.active = true;
+            this.lblBestScore.string = this._bestScore;
+        }
     },
 
     _initPlayer() {
@@ -68,7 +105,9 @@ cc.Class({
         let h = cc.view.getVisibleSize().height;
 
         this._player.y = -h / 3;
-
+        this._player.width = w / 8;
+        this._player.height = w / 8;
+        this._player.getComponent(cc.BoxCollider).size = this._player.getContentSize();
         this.playerLayer.on('touchstart', function (event) {
             if (this._startFlag === true) {
                 return true;
@@ -130,57 +169,21 @@ cc.Class({
                 enemyPre.height = w / num;
                 enemyPre.y = h;
                 enemyPre.x = Util.getItemPosX(i, num, w);
+                enemyPre.getComponent(cc.BoxCollider).size = enemyPre.getContentSize();
                 let hp = parseInt(baseHp * cc.random0To1() + baseHp);
                 enemyPre.getComponent('Enemy').initView(this._enemyPool);
                 enemyPre.getComponent('Enemy').initHp(hp);
             }
-            if (this._player.width !== w / num) {
-                this._player.width = w / num;
-                this._player.height = w / num;
-                this._player.getComponent(cc.BoxCollider).width = w / num * 0.9;
-                this._player.getComponent(cc.BoxCollider).height = h / num * 0.9;
-            }
-
-
-            // if (type === 0) {
-            //     let num = 4;
-            //     for (let i = 0; i < num; ++i) {
-            //         let enemyPre = this._enemyPool.get();
-            //         if (!enemyPre) {
-            //             enemyPre = cc.instantiate(this.enemyPre);
-            //         }
-            //         this.enemyLayer.addChild(enemyPre);
-            //         let w = cc.view.getVisibleSize().width;
-            //         let h = cc.view.getVisibleSize().height;
-            //         enemyPre.width = w / num;
-            //         enemyPre.height = w / num;
-            //         enemyPre.y = h;
-            //         enemyPre.x = Util.getItemPosX(i, num, w);
-            //         let hp = parseInt(baseHp * cc.random0To1() + baseHp);
-            //         enemyPre.getComponent('Enemy').initView(this._enemyPool);
-            //         enemyPre.getComponent('Enemy').initHp(hp);
-            //     }
-            // } else if (type === 1) {
-            //     let num = 5;
-            //     for (let i = 0; i < num; ++i) {
-            //         let enemyPre1 = this._enemyPool.get();
-            //         if (!enemyPre1) {
-            //             enemyPre1 = cc.instantiate(this.enemyPre);
-            //         }
-            //         this.enemyLayer.addChild(enemyPre1);
-            //         let w = cc.view.getVisibleSize().width;
-            //         let h = cc.view.getVisibleSize().height;
-            //         enemyPre1.width = w / num;
-            //         enemyPre1.height = w / num;
-            //         enemyPre1.getComponent(cc.BoxCollider).size.width = enemyPre1.width;
-            //         enemyPre1.getComponent(cc.BoxCollider).size.height = enemyPre1.height;
-            //         enemyPre1.y = h;
-            //         enemyPre1.x = Util.getItemPosX(i, num, w);
-            //         let hp = parseInt(baseHp * cc.random0To1() + baseHp);
-            //         enemyPre1.getComponent('Enemy').initView(this._enemyPool);
-            //         enemyPre1.getComponent('Enemy').initHp(hp);
-            //     }
-            // }
         }
+    },
+
+    showOver() {
+        let manager = cc.director.getCollisionManager();
+        manager.enabled = false;
+        UIMgr.createPrefab(this.overPre, function (root, ui) {
+            this.addNode.addChild(root);
+            let script = ui.getComponent('Over');
+            script.showTotalAndBestScore(this._totalScore, this._bestScore);
+        }.bind(this));
     }
 });
