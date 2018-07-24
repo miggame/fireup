@@ -48,9 +48,8 @@ cc.Class({
     initView(data) {
         this._data = data;
         let tempColor = new cc.color(data.color);
-        let locked = data.locked;
         this.spBullet.node.color = tempColor;
-
+        let locked = data.locked;
         this.spMask.node.active = this._data.locked === 1 ? false : true;
         if (GameCfg.ball.index === this._data.index) {
             this.checkToggle.isChecked = true;

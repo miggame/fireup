@@ -253,12 +253,12 @@ module.exports = {
         1: {
             index: 1,
             color: "#ffffff",
-            locked: 0
+            locked: 1
         },
         2: {
             index: 2,
             color: "#ffea00",
-            locked: 0
+            locked: 1
         },
         3: {
             index: 3,

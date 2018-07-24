@@ -28,6 +28,9 @@ cc.Class({
 
     initView(pool) {
         this._bulletPool = pool;
+        let tempColor = new cc.color(GameCfg.ball.color);
+        console.log('GameCfg.ball.color: ', GameCfg.ball.color);
+        this.spBullet.node.color = tempColor;
     },
 
     start() {

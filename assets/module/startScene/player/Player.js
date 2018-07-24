@@ -31,7 +31,6 @@ cc.Class({
     },
     onLoad() {
         this._initMsg();
-        // this.schedule(this._createBullet, GameCfg.bulletRefreshTime);
         this._bulletPool = new cc.NodePool('BulletPool');
         for (let i = 0; i < 10; ++i) {
             let bulletPreTemp = cc.instantiate(this.bulletPre);
