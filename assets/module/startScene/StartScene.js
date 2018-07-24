@@ -97,7 +97,7 @@ cc.Class({
     _initUI() {
         this.lblTotalScore.node.active = false;
         this._bestScore = cc.sys.localStorage.getItem('bestScore');
-        console.log(this._bestScore);
+
         if (this._bestScore === null || this._bestScore === undefined) {
             this._bestScore = 0;
             this.uiLayer.active = false;
@@ -110,6 +110,11 @@ cc.Class({
     _initPlayer() {
         this._player = cc.instantiate(this.playerPre);
         this._player.getComponent('Player').initView(GameCfg.player);
+        Util.updateGameDataOfPlayer(GameCfg.player);
+
+        Util.updateGameDataOfBall(GameCfg.ball);
+
+        // console.log('GameData.player: ', GameData.player);
         this.playerLayer.addChild(this._player);
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
@@ -201,10 +206,10 @@ cc.Class({
         UIMgr.createPrefab(this.shopPre, function (root, ui) {
             this.addNode.addChild(root);
             let script = ui.getComponent('Shop');
-            let data = {
-                len: 7
-            };
+            let data = GameCfg.player;
             script.initView(data);
         }.bind(this));
-    }
+    },
+
+
 });

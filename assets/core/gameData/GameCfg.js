@@ -14,6 +14,12 @@ module.exports = {
         type: 'starter',
         demage: 1,
         bulletSpeed: 1000,
-        bulletNum: 1
+        bulletNum: 1,
+        locked: 1
     },
+    ball: {
+        color: '#ffffff',
+        index: 1,
+        locked: 1
+    }
 }

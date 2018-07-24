@@ -1,4 +1,5 @@
 let GameData = require('GameData');
+let GameCfg = require('GameCfg');
 
 module.exports = {
     getEnemyHpByType(type, obj) {
@@ -73,5 +74,60 @@ module.exports = {
             }
         }
         return arr;
-    }
+    },
+
+    updateGameDataOfPlayer(cfgData) {
+        let index = cfgData.index;
+        for (const key in GameData.player) {
+            if (GameData.player.hasOwnProperty(key)) {
+                let element = GameData.player[key];
+                if (element.index === index) {
+                    GameData.player[key] = cfgData;
+                    return;
+                }
+            }
+        }
+    },
+
+    updateGameCfgOfPlayer(data) {
+        let index = data.index;
+        for (const key in GameData.player) {
+            if (GameData.player.hasOwnProperty(key)) {
+                const element = GameData.player[key];
+                if (index === element.index) {
+                    GameCfg.player = element;
+                    GameCfg.player.locked = data.locked;
+                    return;
+                }
+            }
+        }
+    },
+
+    updateGameDataOfBall(cfgData) {
+        let index = cfgData.index;
+        for (const key in GameData.ball) {
+            if (GameData.ball.hasOwnProperty(key)) {
+                let element = GameData.ball[key];
+
+                if (element.index === index) {
+                    GameData.ball[key].locked = cfgData.locked;
+
+                    return;
+                }
+            }
+        }
+    },
+
+    updateGameCfgOfBall(index) {
+        for (const key in GameData.ball) {
+            if (GameData.ball.hasOwnProperty(key)) {
+                const element = GameData.ball[key];
+                if (index === element.index) {
+                    GameCfg.ball = element;
+                    return;
+                }
+            }
+        }
+    },
+
 }
