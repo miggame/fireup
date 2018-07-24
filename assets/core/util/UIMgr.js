@@ -89,4 +89,9 @@ module.exports = {
         });
     },
 
+    changeSpriteImg(path, sprite) {
+        cc.loader.loadRes(path, cc.SpriteFrame, function (err, spriteFrame) {
+            sprite.node.spriteFrame = spriteFrame;
+        });
+    }
 };

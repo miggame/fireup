@@ -1,3 +1,5 @@
+let GameData = require('GameData');
+
 module.exports = {
     getEnemyHpByType(type, obj) {
         for (const key in obj) {
@@ -39,5 +41,37 @@ module.exports = {
                 }
             }
         }
+    },
+
+    getArrayFromObjectByProperty(type) {
+        let playerArr = _.values(GameData.player);
+        let newArr = _.filter(playerArr, (item) => {
+            if (item.type === type) {
+                return item;
+            }
+        });
+        return newArr;
+    },
+
+    getPlayerTypeArrOfPlayer() {
+        let playerArr = _.values(GameData.player);
+        let typeArr = [];
+        for (const item of playerArr) {
+            typeArr.push(item.type);
+        }
+        return _.uniq(typeArr);
+    },
+
+    getArrOfPlayerByType(type) {
+        let arr = [];
+        for (const key in GameData.player) {
+            if (GameData.player.hasOwnProperty(key)) {
+                const element = GameData.player[key];
+                if (element.type === type) {
+                    arr.push(element);
+                }
+            }
+        }
+        return arr;
     }
 }

@@ -168,7 +168,8 @@
     "_enabled": true,
     "spBullet": {
       "__id__": 3
-    }
+    },
+    "_bulletPool": null
   },
   {
     "__type__": "cc.CircleCollider",

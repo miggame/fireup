@@ -1,11 +1,12 @@
 let Observer = require('Observer');
 let UIMgr = require('UIMgr');
+let Util = require('Util');
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        playerPre: { displayName: 'playerPre', default: null, type: cc.Prefab },
+        shopItemPre: { displayName: 'shopItemPre', default: null, type: cc.Prefab },
         scrollView: { displayName: 'scrollView', default: null, type: cc.ScrollView },
     },
 
@@ -25,9 +26,17 @@ cc.Class({
     initView(data) {
         let len = data.len;
         this.scrollView.content.destroyAllChildren();
-        for (let i = 0; i < len; ++i) {
-            let node = cc.instantiate(this.playerPre);
-            this.scrollView.content.addChild(node);
+
+        let playerTypeArr = Util.getPlayerTypeArrOfPlayer();
+        for (const item of playerTypeArr) {
+            let playerArr = Util.getArrOfPlayerByType(item);
+            let playerLen = playerArr.length;
+            let left = parseInt(playerLen % 3);
+            for (let j = 0; j < playerLen + left; ++j) {
+                let shopItem = cc.instantiate(this.shopItemPre);
+                this.scrollView.content.addChild(shopItem);
+                shopItem.getComponent('ShopItem').initView(playerArr[j]);
+            }
         }
     }
 });

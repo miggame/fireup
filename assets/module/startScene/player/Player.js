@@ -1,12 +1,14 @@
 let GameCfg = require('GameCfg');
 let Observer = require('Observer');
 let ObserverMgr = require('ObserverMgr');
+let UIMgr = require('UIMgr');
 cc.Class({
     extends: Observer,
 
     properties: {
         bulletPre: { displayName: 'bulletPre', default: null, type: cc.Prefab },
         _bulletPool: null,
+        spPlayer: { displayName: 'spPlayer', default: null, type: cc.Sprite },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -35,6 +37,17 @@ cc.Class({
             let bulletPreTemp = cc.instantiate(this.bulletPre);
             this._bulletPool.put(bulletPreTemp);
         }
+    },
+
+    initView(data) {
+        let index = data.index;
+        let type = data.type;
+        let demage = data.demage;
+        let bulletSpeed = data.bulletSpeed;
+        let bulletNum = data.bulletNum;
+
+        let path = 'uiModule/player/player' + index;
+        UIMgr.changeSpriteImg(path, this.spPlayer);
     },
 
     start() {

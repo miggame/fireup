@@ -109,6 +109,7 @@ cc.Class({
 
     _initPlayer() {
         this._player = cc.instantiate(this.playerPre);
+        this._player.getComponent('Player').initView(GameCfg.player);
         this.playerLayer.addChild(this._player);
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;

@@ -1224,7 +1224,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1080,
-      "height": 1269.5
+      "height": 640
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1434,7 +1434,8 @@
     "bulletPre": {
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
-    "_bulletPool": null
+    "_bulletPool": null,
+    "spPlayer": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -1659,7 +1660,8 @@
     "bulletPre": {
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
-    "_bulletPool": null
+    "_bulletPool": null,
+    "spPlayer": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -1884,7 +1886,8 @@
     "bulletPre": {
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
-    "_bulletPool": null
+    "_bulletPool": null,
+    "spPlayer": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -2109,7 +2112,8 @@
     "bulletPre": {
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
-    "_bulletPool": null
+    "_bulletPool": null,
+    "spPlayer": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -2152,11 +2156,11 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 45,
+    "_alignFlags": 41,
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 0,
+    "_bottom": 869.5,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -2178,10 +2182,10 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 300,
-      "height": 200
+      "width": 1080,
+      "height": 640
     },
-    "_resize": 0,
+    "_resize": 1,
     "_N$layoutType": 3,
     "_N$padding": 0,
     "_N$cellSize": {
@@ -2352,8 +2356,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "playerPre": {
-      "__uuid__": "2358753a-a2b2-4fb6-8166-75867ef71a22"
+    "shopItemPre": {
+      "__uuid__": "ca2ef024-4014-4043-b9b0-87f0d71f395b"
     },
     "scrollView": {
       "__id__": 73
