@@ -234,8 +234,8 @@ cc.Class({
     _createReward() {
         let rewardArr = _.values(GameData.reward);
         let tempReward = _.sample(rewardArr);
-        let time = tempReward.time;
-        let reward = tempReward.reward;
+        let reward = tempReward.type;
+        console.log('reward: ', reward);
         if (reward === 0) {
             return;
         }

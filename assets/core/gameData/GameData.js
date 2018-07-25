@@ -6,7 +6,11 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 1,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         2: {
             type: "starter",
@@ -14,7 +18,11 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 1,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         3: {
             type: "starter",
@@ -22,7 +30,11 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 1,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         4: {
             type: "starter",
@@ -30,7 +42,11 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 1,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         5: {
             type: "starter",
@@ -38,7 +54,11 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 1,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         6: {
             type: "starter",
@@ -46,7 +66,11 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 1,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         7: {
             type: "shootingpower",
@@ -54,7 +78,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         8: {
             type: "shootingpower",
@@ -62,7 +90,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         9: {
             type: "shootingpower",
@@ -70,7 +102,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         10: {
             type: "shootingpower",
@@ -78,7 +114,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         11: {
             type: "shootingpower",
@@ -86,7 +126,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         12: {
             type: "movementspeed",
@@ -94,7 +138,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         13: {
             type: "movementspeed",
@@ -102,7 +150,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         14: {
             type: "movementspeed",
@@ -110,7 +162,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         15: {
             type: "doubleshooter",
@@ -118,7 +174,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 2,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         16: {
             type: "doubleshooter",
@@ -126,7 +186,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 2,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         17: {
             type: "doubleshooter",
@@ -134,7 +198,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 2,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         18: {
             type: "shield",
@@ -142,7 +210,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         19: {
             type: "shield",
@@ -150,7 +222,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         20: {
             type: "shield",
@@ -158,7 +234,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         21: {
             type: "shootingspeed",
@@ -166,7 +246,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         22: {
             type: "shootingspeed",
@@ -174,7 +258,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         23: {
             type: "shootingspeed",
@@ -182,7 +270,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         24: {
             type: "shootingspeed",
@@ -190,7 +282,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         25: {
             type: "sidewayshooter",
@@ -198,7 +294,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         26: {
             type: "sidewayshooter",
@@ -206,7 +306,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         27: {
             type: "sidewayshooter",
@@ -214,7 +318,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         28: {
             type: "tripleshooter",
@@ -222,7 +330,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         29: {
             type: "tripleshooter",
@@ -230,7 +342,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         30: {
             type: "tripleshooter",
@@ -238,7 +354,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         },
         31: {
             type: "tripleshooter",
@@ -246,7 +366,11 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            demageLevel: 10,
+            demageCost: 0,
+            speedLevel: 1,
+            speedCost: 0
         }
     },
     ball: {
@@ -301,19 +425,19 @@ module.exports = {
             time: 5
         },
         3: {
-            type: 2,
+            type: 0,
             time: 5
         },
         4: {
-            type: 3,
+            type: 0,
             time: 5
         },
         5: {
-            type: 2,
+            type: 0,
             time: 5
         },
         6: {
-            type: 3,
+            type: 0,
             time: 5
         },
         7: {
@@ -321,15 +445,15 @@ module.exports = {
             time: 5
         },
         8: {
-            type: 3,
+            type: 0,
             time: 5
         },
         9: {
-            type: 2,
+            type: 0,
             time: 5
         },
         10: {
-            type: 3,
+            type: 0,
             time: 5
         }
     },
