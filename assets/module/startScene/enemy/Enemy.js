@@ -49,10 +49,10 @@ cc.Class({
     },
 
     minusHp() {
-        this._hp--;
+        this._hp -= GameCfg.player.demage;
         this._refresh(this._hp);
         let data = {
-            demage: 1
+            demage: GameCfg.player.demage
         };
         ObserverMgr.dispatchMsg(GameLocalMsg.Msg.RefreshScore, data);
     },

@@ -5,7 +5,7 @@ window.GameLocalMsg = {
         RefreshScore: 'GameLocalMsg.Msg.RefreshScore',
         ExplodePos: 'GameLocalMsg.Msg.ExplodePos',
         ChoosePlayer: 'GameLocalMsg.Msg.ChoosePlayer',
-        ChooseBall: 'GameLocalMsg.Msg.ChooseBall'
-
+        ChooseBall: 'GameLocalMsg.Msg.ChooseBall',
+        Reward: 'GameLocalMsg.Msg.Reward'
     }
 }

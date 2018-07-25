@@ -27,6 +27,8 @@ cc.Class({
         particleLayer: { displayName: 'particleLayer', default: null, type: cc.Node },
         explodePre: { displayName: 'explodePre', default: null, type: cc.Prefab },
         shopPre: { displayName: 'shopPre', default: null, type: cc.Prefab },
+        rewardPre: { displayName: 'rewardPre', default: null, type: cc.Prefab },
+        rewardLayer: { displayName: 'rewardLayer', default: null, type: cc.Node },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -109,12 +111,11 @@ cc.Class({
 
     _initPlayer() {
         this._player = cc.instantiate(this.playerPre);
-        this._player.getComponent('Player').initView(GameCfg.player);
-        Util.updateGameDataOfPlayer(GameCfg.player);
 
+        Util.updateGameDataOfPlayer(GameCfg.player);
+        this._player.getComponent('Player').initView(GameCfg.player);
         Util.updateGameDataOfBall(GameCfg.ball);
 
-        // console.log('GameData.player: ', GameData.player);
         this.playerLayer.addChild(this._player);
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
@@ -123,6 +124,8 @@ cc.Class({
         this._player.width = w / 8;
         this._player.height = w / 8;
         this._player.getComponent(cc.BoxCollider).size = this._player.getContentSize();
+
+
         this.playerLayer.on('touchstart', function (event) {
             if (this._startFlag === true) {
                 return true;
@@ -168,7 +171,6 @@ cc.Class({
             this.unschedule(this._createEnemy);
             return;
         } else {
-
             let type = this._level.shift().type;
             let baseHp = Util.getEnemyHpByType(type, GameData.enemy);
             let num = Util.getEnemyNumByType(type, GameData.enemy);
@@ -190,6 +192,8 @@ cc.Class({
                 enemyPre.getComponent('Enemy').initHp(hp);
             }
         }
+
+        this._createReward();
     },
 
     showOver() {
@@ -211,5 +215,21 @@ cc.Class({
         }.bind(this));
     },
 
+    _createReward() {
+        let rewardArr = _.values(GameData.reward);
+        let tempReward = _.sample(rewardArr);
+        let time = tempReward.time;
+        let reward = tempReward.reward;
+        if (reward === 0) {
+            return;
+        }
+        let rewardPre = cc.instantiate(this.rewardPre);
+        this.rewardLayer.addChild(rewardPre);
+        let w = cc.view.getVisibleSize().width;
+        let h = cc.view.getVisibleSize().height;
 
+        rewardPre.y = h * 0.8;
+        rewardPre.x = cc.randomMinus1To1() * w / 2 * 0.8;
+        rewardPre.getComponent('Reward').initView(tempReward);
+    }
 });

@@ -251,44 +251,86 @@ module.exports = {
     },
     ball: {
         1: {
-            index: 1,
             color: "#ffffff",
-            locked: 1
+            locked: 0,
+            index: 1
         },
         2: {
-            index: 2,
             color: "#ffea00",
-            locked: 1
+            locked: 0,
+            index: 2
         },
         3: {
-            index: 3,
             color: "#fe0000",
-            locked: 0
+            locked: 0,
+            index: 3
         },
         4: {
-            index: 4,
             color: "#6500ff",
-            locked: 0
+            locked: 0,
+            index: 4
         },
         5: {
-            index: 5,
             color: "#ff5a00",
-            locked: 0
+            locked: 0,
+            index: 5
         },
         6: {
-            index: 6,
             color: "#ff009a",
-            locked: 0
+            locked: 0,
+            index: 6
         },
         7: {
-            index: 7,
             color: "#06ff00",
-            locked: 0
+            locked: 0,
+            index: 7
         },
         8: {
-            index: 8,
             color: "#0075ff",
-            locked: 0
+            locked: 0,
+            index: 8
+        }
+    },
+    reward: {
+        1: {
+            type: 2,
+            time: 5
+        },
+        2: {
+            type: 3,
+            time: 5
+        },
+        3: {
+            type: 2,
+            time: 5
+        },
+        4: {
+            type: 3,
+            time: 5
+        },
+        5: {
+            type: 2,
+            time: 5
+        },
+        6: {
+            type: 3,
+            time: 5
+        },
+        7: {
+            type: 1,
+            time: 0
+        },
+        8: {
+            type: 1,
+            time: 0
+        },
+        9: {
+            type: 1,
+            time: 0
+        },
+        10: {
+            type: 1,
+            time: 0
         }
     },
     enemy: {

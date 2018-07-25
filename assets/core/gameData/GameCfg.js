@@ -12,7 +12,7 @@ module.exports = {
     player: {
         index: 0,
         type: 'starter',
-        demage: 1,
+        demage: 50,
         bulletSpeed: 1000,
         bulletNum: 1,
         locked: 1
