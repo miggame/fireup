@@ -142,7 +142,31 @@ module.exports = {
         }
     },
 
+    getBulletSpeedOfPlayerByPlayerIndex() {
+        let index = GameCfg.player.index;
+        let tempArr = _.values(GameData.player);
+        for (const item of tempArr) {
+            if (item.index === index) {
+                return item.bulletSpeed;
+            }
+        }
+    },
+
+    getBulletPowerOfPlayerByPlayerIndex() {
+        let index = GameCfg.player.index;
+        let tempArr = _.values(GameData.player);
+        for (const item of tempArr) {
+            if (item.index === index) {
+                return item.demage;
+            }
+        }
+    },
+
     saveOwnedScore(score) {
         cc.sys.localStorage.setItem('ownedScore', score);
+    },
+
+    getOwnedScore() {
+        return cc.sys.localStorage.getItem('ownedScore');
     }
 }

@@ -11,6 +11,7 @@ cc.Class({
         bulletItemPre: { displayName: 'bulletItemPre', default: null, type: cc.Prefab },
         shooterToggle: { displayName: 'shooterToggle', default: null, type: cc.Toggle },
         ballToggle: { displayName: 'ballToggle', default: null, type: cc.Toggle },
+        lblOwnedScore: { displayName: 'lblOwnedScore', default: null, type: cc.Label },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -45,6 +46,7 @@ cc.Class({
                 shopItem.getComponent('ShopItem').initView(playerArr[j], j, data);
             }
         }
+        this.lblOwnedScore.string = Util.getOwnedScore();
     },
 
     onToggleClickToShooter() {

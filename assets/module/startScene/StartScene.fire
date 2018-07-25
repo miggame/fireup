@@ -2730,6 +2730,12 @@
     },
     "upgradePre": {
       "__uuid__": "634fbef6-b9c8-4089-90af-70acfdce784a"
+    },
+    "lblBulletPower": {
+      "__id__": 32
+    },
+    "lblBulletSpeed": {
+      "__id__": 26
     }
   }
 ]

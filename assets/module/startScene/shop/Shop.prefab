@@ -2772,6 +2772,9 @@
     },
     "ballToggle": {
       "__id__": 38
+    },
+    "lblOwnedScore": {
+      "__id__": 12
     }
   },
   {

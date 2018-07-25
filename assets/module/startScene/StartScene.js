@@ -30,6 +30,8 @@ cc.Class({
         rewardPre: { displayName: 'rewardPre', default: null, type: cc.Prefab },
         rewardLayer: { displayName: 'rewardLayer', default: null, type: cc.Node },
         upgradePre: { displayName: 'upgradePre', default: null, type: cc.Prefab },
+        lblBulletPower: { displayName: 'lblBulletPower', default: null, type: cc.Label },
+        lblBulletSpeed: { displayName: 'lblBulletSpeed', default: null, type: cc.Label },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -107,6 +109,11 @@ cc.Class({
             this.uiLayer.active = true;
             this.lblOwnedScore.string = this._ownedScore;
         }
+
+        let bulletSpeed = Util.getBulletSpeedOfPlayerByPlayerIndex();
+        let bulletPower = Util.getBulletPowerOfPlayerByPlayerIndex();
+        this.lblBulletPower.string = bulletPower;
+        this.lblBulletSpeed.string = bulletSpeed;
     },
 
     _initPlayer() {

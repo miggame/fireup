@@ -1,5 +1,6 @@
 let Observer = require('Observer');
 let UIMgr = require('UIMgr');
+let Util = require('Util');
 
 cc.Class({
     extends: Observer,
@@ -30,6 +31,7 @@ cc.Class({
         this.touchLayer.on('touchend', function (event) {
             UIMgr.destroyUI(this);
         }.bind(this));
+        this.lblOwnedScore.string = Util.getOwnedScore();
     },
 
     start() {
