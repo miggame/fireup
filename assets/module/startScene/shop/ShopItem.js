@@ -24,7 +24,6 @@ cc.Class({
 
     _onMsg(msg, data) {
         if (msg === GameLocalMsg.Msg.ChoosePlayer) {
-            console.log('this._data: ', this._data);
             if (this._data !== undefined) {
                 if (this._data.index === data.index) {
                     this.checkToggle.isChecked = true;

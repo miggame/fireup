@@ -2,6 +2,9 @@ let GameCfg = require('GameCfg');
 let Observer = require('Observer');
 let ObserverMgr = require('ObserverMgr');
 let UIMgr = require('UIMgr');
+let GameData = require('GameData');
+let Util = require('Util');
+
 cc.Class({
     extends: Observer,
 
@@ -11,14 +14,15 @@ cc.Class({
         spPlayer: { displayName: 'spPlayer', default: null, type: cc.Sprite },
         _data: null,
         _rewardTimer: null,
-        _bulletPreType: null
+        _bulletOriNum: null
     },
 
     // LIFE-CYCLE CALLBACKS:
     _getMsgList() {
         return [
             GameLocalMsg.Msg.GameStart,
-            GameLocalMsg.Msg.Reward
+            GameLocalMsg.Msg.Reward,
+            GameLocalMsg.Msg.GameOver
         ];
     },
 
@@ -26,12 +30,14 @@ cc.Class({
         if (msg === GameLocalMsg.Msg.GameStart) {
             this.schedule(this._createBullet, GameCfg.bulletRefreshTime);
         } else if (msg === GameLocalMsg.Msg.Reward) {
-            console.log('data: ', data);
             this.unschedule(this._countDown);
             this._rewardTimer = data.time;
-            this._bulletPreType = GameCfg.player.bulletNum;
             GameCfg.player.bulletNum = data.type;
             this.schedule(this._countDown, 1);
+        } else if (msg === GameLocalMsg.Msg.GameOver) {
+            this.unschedule(this._countDown);
+            GameCfg.player.bulletNum = this._bulletOriNum;
+            this.node.removeFromParent();
         }
     },
     onLoad() {
@@ -42,15 +48,15 @@ cc.Class({
             let bulletPreTemp = cc.instantiate(this.bulletPre);
             this._bulletPool.put(bulletPreTemp);
         }
+        // this._bulletOriNum = Util.getBulletNumOfPlayerByPlayerIndex();
     },
 
     initView(data) {
         this._data = data;
-
         let index = data.index;
-
         let path = 'uiModule/player/player' + index;
         UIMgr.changeSpriteImg(path, this.spPlayer);
+        this._bulletOriNum = Util.getBulletNumOfPlayerByPlayerIndex();
     },
 
     start() {
@@ -92,24 +98,12 @@ cc.Class({
             bulletPre.getComponent('Bullet').initView(this._bulletPool);
 
         }
-
-        // if (this._bulletPool.size() > 0) {
-        //     bulletPre = this._bulletPool.get();
-        // } else {
-        //     bulletPre = cc.instantiate(this.bulletPre);
-        // }
-        // this.node.parent.addChild(bulletPre);
-        // bulletPre.x = this.node.x;
-        // bulletPre.y = this.node.y + this.node.height / 2;
-        // bulletPre.getComponent('Bullet').initView(this._bulletPool);
     },
 
     onCollisionEnter(other, self) {
-        console.log('player');
         if (other.node.name === 'Enemy') {
             this.node.removeAllChildren();
-            this.node.removeFromParent();
-            // cc.game.pause();
+            // this.node.removeFromParent();
             ObserverMgr.dispatchMsg(GameLocalMsg.Msg.GameOver, null);
         }
     },
@@ -121,8 +115,8 @@ cc.Class({
         this._rewardTimer--;
         if (this._rewardTimer <= 0) {
             this._rewardTimer = 0;
+            GameCfg.player.bulletNum = this._bulletOriNum;
             this.unschedule(this._countDown);
-            GameCfg.player.bulletNum = this._bulletPreType;
         }
     }
 });

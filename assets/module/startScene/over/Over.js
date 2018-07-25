@@ -33,8 +33,8 @@ cc.Class({
         cc.director.loadScene('StartScene');
     },
 
-    showTotalAndBestScore(totalScore, bestScore) {
-        this.lblBestScore.string = bestScore;
+    showTotalAndOwnedScore(totalScore, ownedScore) {
+        this.lblBestScore.string = ownedScore;
         this.lblTotalScore.string = "+" + totalScore;
     }
 });

@@ -1825,7 +1825,10 @@
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
     "_bulletPool": null,
-    "spPlayer": null
+    "spPlayer": null,
+    "_data": null,
+    "_rewardTimer": null,
+    "_bulletOriNum": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -2051,7 +2054,10 @@
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
     "_bulletPool": null,
-    "spPlayer": null
+    "spPlayer": null,
+    "_data": null,
+    "_rewardTimer": null,
+    "_bulletOriNum": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -2277,7 +2283,10 @@
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
     "_bulletPool": null,
-    "spPlayer": null
+    "spPlayer": null,
+    "_data": null,
+    "_rewardTimer": null,
+    "_bulletOriNum": null
   },
   {
     "__type__": "cc.BoxCollider",
@@ -2503,7 +2512,10 @@
       "__uuid__": "a40ed50a-3005-441d-84f7-629ba85f6024"
     },
     "_bulletPool": null,
-    "spPlayer": null
+    "spPlayer": null,
+    "_data": null,
+    "_rewardTimer": null,
+    "_bulletOriNum": null
   },
   {
     "__type__": "cc.BoxCollider",

@@ -130,4 +130,19 @@ module.exports = {
         }
     },
 
+    getBulletNumOfPlayerByPlayerIndex() {
+        let index = GameCfg.player.index;
+        console.log('index: ', index);
+        let tempArr = _.values(GameData.player);
+        for (const item of tempArr) {
+            if (item.index === index) {
+                console.log('item: ', item);
+                return item.bulletNum;
+            }
+        }
+    },
+
+    saveOwnedScore(score) {
+        cc.sys.localStorage.setItem('ownedScore', score);
+    }
 }

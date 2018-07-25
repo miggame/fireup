@@ -189,7 +189,7 @@
     "spReward": {
       "__id__": 3
     },
-    "_type": null
+    "_rewardData": null
   },
   {
     "__type__": "cc.PrefabInfo",

@@ -27,7 +27,6 @@ cc.Class({
                 this.checkToggle.isChecked = true;
                 GameData.ball[data.index].locked = 1;
                 Util.updateGameCfgOfBall(data.index);
-                console.log('GameCfg.ball: ', GameCfg.ball);
             } else {
                 this.checkToggle.isChecked = false;
             }

@@ -2,6 +2,7 @@ let Observer = require('Observer');
 let UIMgr = require('UIMgr');
 let GameCfg = require('GameCfg');
 let ObserverMgr = require('ObserverMgr');
+let GameData = require('GameData');
 
 cc.Class({
     extends: Observer,
@@ -34,8 +35,6 @@ cc.Class({
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y < -h) {
-            // console.log('this.node.y: ', this.node.y);
-            // this._enemyPool.put(this.node);
             this.node.destroy();
         }
     },
@@ -47,7 +46,6 @@ cc.Class({
     },
 
     onCollisionEnter(other, self) {
-        console.log('reward');
         if (other.node.name === 'Player') {
             let data = this._rewardData;
             ObserverMgr.dispatchMsg(GameLocalMsg.Msg.Reward, data);

@@ -17,10 +17,10 @@ cc.Class({
         _level: [],
         enemyPre: { displayName: 'enemyPre', default: null, type: cc.Prefab },
         _enemyPool: null,
-        lblBestScore: { displayName: 'lblBestScore', default: null, type: cc.Label },
+        lblOwnedScore: { displayName: 'lblOwnedScore', default: null, type: cc.Label },
         uiLayer: { displayName: 'uiLayer', default: null, type: cc.Node },
         _totalScore: null,
-        _bestScore: null,
+        _ownedScore: null,
         lblTotalScore: { displayName: 'lblTotalScore', default: null, type: cc.Label },
         overPre: { displayName: 'overPre', default: null, type: cc.Prefab },
         addNode: { displayName: 'addNode', default: null, type: cc.Node },
@@ -29,6 +29,7 @@ cc.Class({
         shopPre: { displayName: 'shopPre', default: null, type: cc.Prefab },
         rewardPre: { displayName: 'rewardPre', default: null, type: cc.Prefab },
         rewardLayer: { displayName: 'rewardLayer', default: null, type: cc.Node },
+        upgradePre: { displayName: 'upgradePre', default: null, type: cc.Prefab },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -53,9 +54,10 @@ cc.Class({
             this._totalScore = this._totalScore + tempScore;
             this.lblTotalScore.string = this._totalScore;
         } else if (msg === GameLocalMsg.Msg.GameOver) {
-            if (this._bestScore <= this._totalScore) {
-                this._bestScore = this._totalScore;
-                cc.sys.localStorage.setItem('bestScore', this._totalScore);
+            if (this._ownedScore !== null || this._ownedScore !== undefined) {
+                this._ownedScore = parseInt(this._totalScore) + parseInt(this._ownedScore);
+                // cc.sys.localStorage.setItem('ownedScore', this._ownedScore);
+                Util.saveOwnedScore(this._ownedScore);
             }
             this.showOver();
         } else if (msg === GameLocalMsg.Msg.ExplodePos) {
@@ -71,9 +73,6 @@ cc.Class({
 
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        // manager.enabledDebugDraw = true;
-        // manager.enabledDrawBoundingBox = true;
-
 
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
 
@@ -94,18 +93,19 @@ cc.Class({
         this._initPlayer();
         this._initTutor();
         this._initUI();
+
     },
 
     _initUI() {
         this.lblTotalScore.node.active = false;
-        this._bestScore = cc.sys.localStorage.getItem('bestScore');
+        this._ownedScore = cc.sys.localStorage.getItem('ownedScore');
 
-        if (this._bestScore === null || this._bestScore === undefined) {
-            this._bestScore = 0;
+        if (this._ownedScore === null || this._ownedScore === undefined) {
+            this._ownedScore = 0;
             this.uiLayer.active = false;
         } else {
             this.uiLayer.active = true;
-            this.lblBestScore.string = this._bestScore;
+            this.lblOwnedScore.string = this._ownedScore;
         }
     },
 
@@ -113,8 +113,9 @@ cc.Class({
         this._player = cc.instantiate(this.playerPre);
 
         Util.updateGameDataOfPlayer(GameCfg.player);
-        this._player.getComponent('Player').initView(GameCfg.player);
+
         Util.updateGameDataOfBall(GameCfg.ball);
+        this._player.getComponent('Player').initView(GameCfg.player);
 
         this.playerLayer.addChild(this._player);
         let w = cc.view.getVisibleSize().width;
@@ -192,7 +193,6 @@ cc.Class({
                 enemyPre.getComponent('Enemy').initHp(hp);
             }
         }
-
         this._createReward();
     },
 
@@ -202,7 +202,7 @@ cc.Class({
         UIMgr.createPrefab(this.overPre, function (root, ui) {
             this.addNode.addChild(root);
             let script = ui.getComponent('Over');
-            script.showTotalAndBestScore(this._totalScore, this._bestScore);
+            script.showTotalAndOwnedScore(this._totalScore, this._ownedScore);
         }.bind(this));
     },
 
@@ -212,6 +212,15 @@ cc.Class({
             let script = ui.getComponent('Shop');
             let data = GameCfg.player;
             script.initView(data);
+        }.bind(this));
+    },
+
+    onBtnClickToUpgrade() {
+        UIMgr.createPrefab(this.upgradePre, function (root, ui) {
+            this.addNode.addChild(root);
+            let script = ui.getComponent('Upgrade');
+            // let data = GameCfg.player;
+            // script.initView(data);
         }.bind(this));
     },
 
