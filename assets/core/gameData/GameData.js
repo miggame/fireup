@@ -487,17 +487,17 @@ module.exports = {
         0: {
             type: 0,
             num: 4,
-            hp: 100
+            hp: 15
         },
         1: {
             type: 1,
             num: 5,
-            hp: 200
+            hp: 30
         },
         2: {
             type: 2,
             num: 12,
-            hp: 300
+            hp: 45
         }
     },
     level: {

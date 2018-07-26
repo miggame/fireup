@@ -8,7 +8,8 @@ module.exports = {
         '#ff8d51'
     ],
     bulletSpeed: 1000,
-    bulletRefreshTime: 0.1,
+    // bulletRefreshTime: 0.1,
+    bulletRefreshDistance: 1000,
     player: {
         index: 0,
         type: 'starter',

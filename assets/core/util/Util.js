@@ -25,7 +25,7 @@ module.exports = {
     },
 
     getColorByData(data, colorArr) {
-        return colorArr[parseInt(data / 100)];
+        return colorArr[parseInt(data / 15)];
     },
 
     getItemPosX(index, total, w) {

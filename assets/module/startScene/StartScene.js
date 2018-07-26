@@ -4,6 +4,9 @@ let GameCfg = require('GameCfg');
 let GameData = require('GameData');
 let Util = require('Util');
 let UIMgr = require('UIMgr');
+let AudioMgr = require('AudioMgr');
+let AudioPlayer = require('AudioPlayer');
+
 cc.Class({
     extends: Observer,
 
@@ -56,6 +59,7 @@ cc.Class({
             let tempScore = data.demage;
             this._totalScore = this._totalScore + tempScore;
             this.lblTotalScore.string = this._totalScore;
+            AudioMgr.playScoreEffectMusic();
         } else if (msg === GameLocalMsg.Msg.GameOver) {
             if (this._ownedScore !== null || this._ownedScore !== undefined) {
                 this._ownedScore = parseInt(this._totalScore) + parseInt(this._ownedScore);
@@ -68,6 +72,7 @@ cc.Class({
             let particleNode = cc.instantiate(this.explodePre);
             this.particleLayer.addChild(particleNode);
             particleNode.position = pos;
+            AudioMgr.playExplodeEffectMusic();
         }
     },
     onLoad() {
@@ -84,6 +89,9 @@ cc.Class({
             let enemyPreTemp = cc.instantiate(this.enemyPre);
             this._enemyPool.put(enemyPreTemp);
         }
+        // AudioPlayer.stopCurrentBackgroundMusic();
+        cc.audioEngine.stopAll();
+        AudioMgr.playMainMusic();
     },
 
     start() {
@@ -212,6 +220,8 @@ cc.Class({
             let script = ui.getComponent('Over');
             script.showTotalAndOwnedScore(this._totalScore, this._ownedScore);
         }.bind(this));
+        AudioMgr.playOverEffectMusic();
+        AudioMgr.playOver1EffectMusic();
     },
 
     onBtnClickToShop() {

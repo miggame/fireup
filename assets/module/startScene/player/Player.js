@@ -4,6 +4,7 @@ let ObserverMgr = require('ObserverMgr');
 let UIMgr = require('UIMgr');
 let GameData = require('GameData');
 let Util = require('Util');
+let AudioMgr = require('AudioMgr');
 
 cc.Class({
     extends: Observer,
@@ -28,8 +29,10 @@ cc.Class({
 
     _onMsg(msg, data) {
         if (msg === GameLocalMsg.Msg.GameStart) {
-            this.schedule(this._createBullet, GameCfg.bulletRefreshTime);
+            let _refreshTime = parseFloat(100 / (GameCfg.player.bulletSpeed * GameCfg.player.bulletSpeedLevel));
+            this.schedule(this._createBullet, _refreshTime);
         } else if (msg === GameLocalMsg.Msg.Reward) {
+            AudioMgr.playRewardEffectMusic();
             this.unschedule(this._countDown);
             this._rewardTimer = data.time;
             GameCfg.player.bulletNum = data.type;
@@ -96,7 +99,7 @@ cc.Class({
             // bulletPre.x = this.node.x;
             bulletPre.y = this.node.y + this.node.height / 2;
             bulletPre.getComponent('Bullet').initView(this._bulletPool);
-
+            AudioMgr.playBulletEffectMusic();
         }
     },
 

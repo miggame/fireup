@@ -2,6 +2,8 @@ let Observer = require('Observer');
 let UIMgr = require('UIMgr');
 let GameCfg = require('GameCfg');
 let Util = require('Util');
+let AudioMgr = require('AudioMgr');
+let AudioPlayer = require('AudioPlayer');
 
 cc.Class({
     extends: Observer,
@@ -36,6 +38,8 @@ cc.Class({
     // update (dt) {},
 
     onBtnClickToReplay() {
+        // AudioPlayer.stopCurrentBackgroundMusic();
+        cc.audioEngine.stopAll();
         UIMgr.destroyUI(this);
         cc.director.loadScene('StartScene');
     },
@@ -70,6 +74,7 @@ cc.Class({
         Util.upgradeSpeedLevelGameCfgOfPlayer();
         this.lblSpeedLevel.string = this._data.bulletSpeedLevel + 1;
         this.lblSpeedCost.string = Util.getSpeedCost(this._data.bulletSpeedLevel + 1);
+        AudioMgr.playUpgradeEffectMusic();
     },
 
     onBtnClickToUpgradePower() {
@@ -84,5 +89,6 @@ cc.Class({
         Util.upgradePowerLevelGameCfgOfPlayer();
         this.lblPowerLevel.string = this._data.bulletPowerLevel + 1;
         this.lblPowerCost.string = Util.getPowerCost(this._data.bulletPowerLevel + 1);
+        AudioMgr.playUpgradeEffectMusic();
     },
 });

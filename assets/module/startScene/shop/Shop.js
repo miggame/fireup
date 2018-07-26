@@ -2,6 +2,8 @@ let Observer = require('Observer');
 let UIMgr = require('UIMgr');
 let Util = require('Util');
 let GameData = require('GameData');
+let AudioPlayer = require('AudioPlayer');
+
 cc.Class({
     extends: Observer,
 
@@ -41,6 +43,8 @@ cc.Class({
 
     // update (dt) {},
     onBtnClickToBack() {
+        // AudioPlayer.stopCurrentBackgroundMusic();
+        cc.audioEngine.stopAll();
         UIMgr.destroyUI(this);
         cc.director.loadScene('StartScene');
     },
