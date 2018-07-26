@@ -104,6 +104,7 @@ cc.Class({
 
         if (this._ownedScore === null || this._ownedScore === undefined) {
             this._ownedScore = 0;
+            Util.saveOwnedScore(this._ownedScore);
             this.uiLayer.active = false;
         } else {
             this.uiLayer.active = true;
