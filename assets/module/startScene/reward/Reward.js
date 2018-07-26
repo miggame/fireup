@@ -42,11 +42,9 @@ cc.Class({
     initView(reward) {
         this._rewardData = reward;
         let path = 'uiModule/reward/reward' + reward.type;
-        console.log('path: ', path);
+
         UIMgr.changeSpriteImg(path, this.spReward);
-        // cc.loader.loadRes(path, cc.SpriteFrame, function (err, spriteFrame) {
-        //     this.spReward.spriteFrame = spriteFrame;
-        // }.bind(this));
+
     },
 
     onCollisionEnter(other, self) {

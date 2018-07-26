@@ -172,6 +172,7 @@ module.exports = {
 
     saveOwnedScore(score) {
         cc.sys.localStorage.setItem('ownedScore', score);
+        this.updatePlayerLockedStatus(score);
     },
 
     getOwnedScore() {
@@ -195,6 +196,22 @@ module.exports = {
             if (item.bulletPowerLevel === level) {
                 cost = item.bulletPowerCost;
                 return cost;
+            }
+        }
+    },
+
+    updatePlayerLockedStatus(data) {
+        console.log('>>>>>>>>');
+        let _tempPlayerArr = _.values(GameData.player);
+        for (const item of _tempPlayerArr) {
+            if (item.lockedCost <= parseInt(data)) {
+                item.locked = 1;
+            }
+        }
+        let _tempBallArr = _.values(GameData.ball);
+        for (const item of _tempBallArr) {
+            if (item.lockedCost <= parseInt(data)) {
+                item.locked = 1;
             }
         }
     }

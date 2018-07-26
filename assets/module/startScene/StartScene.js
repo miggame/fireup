@@ -58,8 +58,8 @@ cc.Class({
         } else if (msg === GameLocalMsg.Msg.GameOver) {
             if (this._ownedScore !== null || this._ownedScore !== undefined) {
                 this._ownedScore = parseInt(this._totalScore) + parseInt(this._ownedScore);
-                // cc.sys.localStorage.setItem('ownedScore', this._ownedScore);
                 Util.saveOwnedScore(this._ownedScore);
+                // Util.updatePlayerLockedStatus(this._ownedScore);
             }
             this.showOver();
         } else if (msg === GameLocalMsg.Msg.ExplodePos) {
@@ -111,10 +111,6 @@ cc.Class({
             this.lblOwnedScore.string = this._ownedScore;
         }
 
-        // let bulletSpeed = Util.getBulletSpeedOfPlayerByPlayerIndex();
-        // let bulletPower = Util.getBulletPowerOfPlayerByPlayerIndex();
-        // this.lblBulletPower.string = bulletPower;
-        // this.lblBulletSpeed.string = bulletSpeed;
         this.lblBulletPower.string = parseInt(GameCfg.player.bulletPowerLevel) * parseInt(GameCfg.player.demage);
         this.lblBulletSpeed.string = parseInt(GameCfg.player.bulletSpeedLevel) * parseInt(GameCfg.player.bulletSpeed);
     },

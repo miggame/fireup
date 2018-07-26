@@ -28,6 +28,9 @@ cc.Class({
     },
 
     initView(data) {
+        let _ownScore = Util.getOwnedScore();
+        this.lblOwnedScore.string = _ownScore;
+        Util.updatePlayerLockedStatus(parseInt(_ownScore));
         this.scrollView.content.destroyAllChildren();
         let playerTypeArr = Util.getPlayerTypeArrOfPlayer();
         for (const item of playerTypeArr) {
@@ -46,7 +49,7 @@ cc.Class({
                 shopItem.getComponent('ShopItem').initView(playerArr[j], j, data);
             }
         }
-        this.lblOwnedScore.string = Util.getOwnedScore();
+
     },
 
     onToggleClickToShooter() {

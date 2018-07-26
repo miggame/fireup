@@ -6,7 +6,8 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 0
         },
         2: {
             type: "starter",
@@ -14,7 +15,8 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 1e3
         },
         3: {
             type: "starter",
@@ -22,7 +24,8 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 2e3
         },
         4: {
             type: "starter",
@@ -30,7 +33,8 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 3e3
         },
         5: {
             type: "starter",
@@ -38,7 +42,8 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 4e3
         },
         6: {
             type: "starter",
@@ -46,7 +51,8 @@ module.exports = {
             demage: 1,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 5e3
         },
         7: {
             type: "shootingpower",
@@ -54,7 +60,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 6e3
         },
         8: {
             type: "shootingpower",
@@ -62,7 +69,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 7e3
         },
         9: {
             type: "shootingpower",
@@ -70,7 +78,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 8e3
         },
         10: {
             type: "shootingpower",
@@ -78,7 +87,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 9e3
         },
         11: {
             type: "shootingpower",
@@ -86,7 +96,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 1e4
         },
         12: {
             type: "movementspeed",
@@ -94,7 +105,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 11e3
         },
         13: {
             type: "movementspeed",
@@ -102,7 +114,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 12e3
         },
         14: {
             type: "movementspeed",
@@ -110,7 +123,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 13e3
         },
         15: {
             type: "doubleshooter",
@@ -118,7 +132,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 2,
-            locked: 0
+            locked: 0,
+            lockedCost: 14e3
         },
         16: {
             type: "doubleshooter",
@@ -126,7 +141,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 2,
-            locked: 0
+            locked: 0,
+            lockedCost: 15e3
         },
         17: {
             type: "doubleshooter",
@@ -134,7 +150,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 2,
-            locked: 0
+            locked: 0,
+            lockedCost: 16e3
         },
         18: {
             type: "shield",
@@ -142,7 +159,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 17e3
         },
         19: {
             type: "shield",
@@ -150,7 +168,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 18e3
         },
         20: {
             type: "shield",
@@ -158,7 +177,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 19e3
         },
         21: {
             type: "shootingspeed",
@@ -166,7 +186,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 2e4
         },
         22: {
             type: "shootingspeed",
@@ -174,7 +195,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 21e3
         },
         23: {
             type: "shootingspeed",
@@ -182,7 +204,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 22e3
         },
         24: {
             type: "shootingspeed",
@@ -190,7 +213,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1500,
             bulletNum: 1,
-            locked: 0
+            locked: 0,
+            lockedCost: 23e3
         },
         25: {
             type: "sidewayshooter",
@@ -198,7 +222,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 24e3
         },
         26: {
             type: "sidewayshooter",
@@ -206,7 +231,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 25e3
         },
         27: {
             type: "sidewayshooter",
@@ -214,7 +240,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 26e3
         },
         28: {
             type: "tripleshooter",
@@ -222,7 +249,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 27e3
         },
         29: {
             type: "tripleshooter",
@@ -230,7 +258,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 28e3
         },
         30: {
             type: "tripleshooter",
@@ -238,7 +267,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 29e3
         },
         31: {
             type: "tripleshooter",
@@ -246,7 +276,8 @@ module.exports = {
             demage: 10,
             bulletSpeed: 1e3,
             bulletNum: 3,
-            locked: 0
+            locked: 0,
+            lockedCost: 3e4
         }
     },
     upgrade: {
@@ -325,42 +356,50 @@ module.exports = {
         1: {
             color: "#ffffff",
             locked: 0,
-            index: 1
+            index: 1,
+            lockedCost: 0
         },
         2: {
             color: "#ffea00",
             locked: 0,
-            index: 2
+            index: 2,
+            lockedCost: 5e3
         },
         3: {
             color: "#fe0000",
             locked: 0,
-            index: 3
+            index: 3,
+            lockedCost: 1e4
         },
         4: {
             color: "#6500ff",
             locked: 0,
-            index: 4
+            index: 4,
+            lockedCost: 15e3
         },
         5: {
             color: "#ff5a00",
             locked: 0,
-            index: 5
+            index: 5,
+            lockedCost: 2e4
         },
         6: {
             color: "#ff009a",
             locked: 0,
-            index: 6
+            index: 6,
+            lockedCost: 25e3
         },
         7: {
             color: "#06ff00",
             locked: 0,
-            index: 7
+            index: 7,
+            lockedCost: 3e4
         },
         8: {
             color: "#0075ff",
             locked: 0,
-            index: 8
+            index: 8,
+            lockedCost: 35e3
         }
     },
     reward: {
