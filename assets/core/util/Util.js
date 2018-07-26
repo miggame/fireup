@@ -95,8 +95,13 @@ module.exports = {
             if (GameData.player.hasOwnProperty(key)) {
                 const element = GameData.player[key];
                 if (index === element.index) {
-                    GameCfg.player = element;
+                    GameCfg.player.type = element.type;
+                    GameCfg.player.index = element.index;
+                    GameCfg.player.demage = element.demage;
+                    GameCfg.player.bulletSpeed = element.bulletSpeed;
+                    GameCfg.player.bulletNum = element.bulletNum;
                     GameCfg.player.locked = data.locked;
+                    GameCfg.player.lockedCost = element.lockedCost;
                     return;
                 }
             }
