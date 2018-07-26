@@ -90,22 +90,16 @@ module.exports = {
     },
 
     updateGameCfgOfPlayer(data) {
-        let index = data.index;
-        for (const key in GameData.player) {
-            if (GameData.player.hasOwnProperty(key)) {
-                const element = GameData.player[key];
-                if (index === element.index) {
-                    GameCfg.player.type = element.type;
-                    GameCfg.player.index = element.index;
-                    GameCfg.player.demage = element.demage;
-                    GameCfg.player.bulletSpeed = element.bulletSpeed;
-                    GameCfg.player.bulletNum = element.bulletNum;
-                    GameCfg.player.locked = data.locked;
-                    GameCfg.player.lockedCost = element.lockedCost;
-                    return;
-                }
-            }
-        }
+
+        GameCfg.player.bulletSpeed = data.bulletSpeed;
+        GameCfg.player.demage = data.demage;
+
+        GameCfg.player.bulletNum = data.bulletNum;
+        GameCfg.player.type = data.type;
+        GameCfg.player.locked = data.locked;
+        GameCfg.player.lockedCost = data.lockedCost;
+        GameCfg.player.index = data.index;
+        GameCfg.player.type = data.type;
     },
 
     updateGameDataOfBall(cfgData) {
@@ -113,10 +107,8 @@ module.exports = {
         for (const key in GameData.ball) {
             if (GameData.ball.hasOwnProperty(key)) {
                 let element = GameData.ball[key];
-
                 if (element.index === index) {
                     GameData.ball[key].locked = cfgData.locked;
-
                     return;
                 }
             }

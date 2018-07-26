@@ -2,6 +2,8 @@ let UIMgr = require('UIMgr');
 let Observer = require('Observer');
 let ObserverMgr = require('ObserverMgr');
 let Util = require('Util');
+let GameCfg = require('GameCfg');
+let GameData = require('GameData');
 
 cc.Class({
     extends: Observer,
@@ -12,7 +14,8 @@ cc.Class({
         spBg: { displayName: 'spBg', default: null, type: cc.Sprite },
         spMask: { displayName: 'spMask', default: null, type: cc.Sprite },
         checkToggle: { displayName: 'checkToggle', default: null, type: cc.Toggle },
-        _data: null
+        _data: null,
+        spCheck: { displayName: 'spCheck', default: null, type: cc.Sprite },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,10 +29,10 @@ cc.Class({
         if (msg === GameLocalMsg.Msg.ChoosePlayer) {
             if (this._data !== undefined) {
                 if (this._data.index === data.index) {
-                    this.checkToggle.isChecked = true;
+                    this.spCheck.node.active = true;
                     Util.updateGameCfgOfPlayer(data);
                 } else {
-                    this.checkToggle.isChecked = false;
+                    this.spCheck.node.active = false;
                 }
             } else {
                 return;
@@ -62,9 +65,14 @@ cc.Class({
             let path = 'uiModule/player/player' + index;
             UIMgr.changeSpriteImg(path, this.spPlayer);
 
-            this.spBg.node.active = true;//解锁
+            this.spBg.node.active = true;//不存在补空
             this.spMask.node.active = locked === 0 ? true : false;
-            this.checkToggle.isChecked = curPlayerData.index === index ? true : false;
+            if (GameCfg.player.index === this._data.index) {
+                this.spCheck.node.active = true;
+            } else {
+                this.spCheck.node.active = false;
+            }
+
         } else {
             UIMgr.changeSpriteImg('uiModule/player/defaultPlayer', this.spPlayer);
             this.lblTypeName.node.active = true;
@@ -72,19 +80,32 @@ cc.Class({
         }
     },
 
-    onToggleClick(e) {
-
+    onBtnClickToShop() {
         if (this._data === null || this._data === undefined) {
             return;
         }
-        if (this.checkToggle.isChecked === false) {
-            this.checkToggle.isChecked = true;
+        if (this._data.locked === 0) {
             return;
         }
-        let data = {
-            index: this._data.index,
-            locked: 1
-        };
-        ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ChoosePlayer, data);
+        if (this.spCheck.node.active === true) {
+            return;
+        }
+        console.log('this._data.owned: ', this._data.owned);
+        if (this._data.owned === 1) {
+            ObserverMgr.dispatchMsg(GameLocalMsg.Msg.BuyPlayer, null);
+            ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ChoosePlayer, this._data);
+            return;
+        }
+
+        let _ownedScore = Util.getOwnedScore();
+        if (parseInt(_ownedScore) < parseInt(this._data.lockedCost)) {
+            return;
+        }
+        let left = parseInt(_ownedScore) - parseInt(this._data.lockedCost)
+        Util.saveOwnedScore(left);
+        GameData.player[this._data.index + 1].owned = 1;
+        this._data.owned = 1;
+        ObserverMgr.dispatchMsg(GameLocalMsg.Msg.BuyPlayer, null);
+        ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ChoosePlayer, this._data);
     }
 });

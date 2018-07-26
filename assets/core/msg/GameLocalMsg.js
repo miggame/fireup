@@ -6,6 +6,9 @@ window.GameLocalMsg = {
         ExplodePos: 'GameLocalMsg.Msg.ExplodePos',
         ChoosePlayer: 'GameLocalMsg.Msg.ChoosePlayer',
         ChooseBall: 'GameLocalMsg.Msg.ChooseBall',
-        Reward: 'GameLocalMsg.Msg.Reward'
+        Reward: 'GameLocalMsg.Msg.Reward',
+        BuyPlayer: 'GameLocalMsg.Msg.BuyPlayer',
+        BuyBall: 'GameLocalMsg.Msg.BuyBall',
+
     }
 }

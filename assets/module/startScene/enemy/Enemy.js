@@ -52,7 +52,7 @@ cc.Class({
         this._hp -= parseInt(GameCfg.player.demage) * parseInt(GameCfg.player.bulletPowerLevel);
         this._refresh(this._hp);
         let data = {
-            demage: GameCfg.player.demage
+            demage: parseInt(GameCfg.player.demage) * parseInt(GameCfg.player.bulletPowerLevel)
         };
         ObserverMgr.dispatchMsg(GameLocalMsg.Msg.RefreshScore, data);
     },

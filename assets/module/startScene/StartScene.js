@@ -50,6 +50,7 @@ cc.Class({
             this._totalScore = 0;
             this.lblTotalScore.string = this._totalScore;
             this.uiLayer.active = false;
+
             this._startEnemy();
         } else if (msg === GameLocalMsg.Msg.RefreshScore) {
             let tempScore = data.demage;
@@ -101,7 +102,8 @@ cc.Class({
     _initUI() {
         this.lblTotalScore.node.active = false;
         this._ownedScore = cc.sys.localStorage.getItem('ownedScore');
-
+        console.log('this._ownedScore: ', this._ownedScore);
+        this.lblOwnedScore.string = this._ownedScore;
         if (this._ownedScore === null || this._ownedScore === undefined) {
             this._ownedScore = 0;
             Util.saveOwnedScore(this._ownedScore);
@@ -118,9 +120,9 @@ cc.Class({
     _initPlayer() {
         this._player = cc.instantiate(this.playerPre);
 
-        Util.updateGameDataOfPlayer(GameCfg.player);
+        // Util.updateGameDataOfPlayer(GameCfg.player);
 
-        Util.updateGameDataOfBall(GameCfg.ball);
+        // Util.updateGameDataOfBall(GameCfg.ball);
         this._player.getComponent('Player').initView(GameCfg.player);
 
         this.playerLayer.addChild(this._player);

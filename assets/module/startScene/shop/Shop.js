@@ -3,7 +3,7 @@ let UIMgr = require('UIMgr');
 let Util = require('Util');
 let GameData = require('GameData');
 cc.Class({
-    extends: cc.Component,
+    extends: Observer,
 
     properties: {
         shopItemPre: { displayName: 'shopItemPre', default: null, type: cc.Prefab },
@@ -15,8 +15,25 @@ cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
+    _getMsgList() {
+        return [
+            GameLocalMsg.Msg.BuyPlayer,
+            GameLocalMsg.Msg.BuyBall
+        ];
+    },
 
-    // onLoad () {},
+    _onMsg(msg, data) {
+        if (msg === GameLocalMsg.Msg.BuyPlayer) {
+            let _ownScore = Util.getOwnedScore();
+            this.lblOwnedScore.string = _ownScore;
+        } else if (msg === GameLocalMsg.Msg.BuyBall) {
+            let _ownScore = Util.getOwnedScore();
+            this.lblOwnedScore.string = _ownScore;
+        }
+    },
+    onLoad() {
+        this._initMsg();
+    },
 
     start() {
 
@@ -25,6 +42,7 @@ cc.Class({
     // update (dt) {},
     onBtnClickToBack() {
         UIMgr.destroyUI(this);
+        cc.director.loadScene('StartScene');
     },
 
     initView(data) {
