@@ -48,7 +48,8 @@ cc.Class({
     },
 
     minusHp() {
-        this._hp -= GameCfg.player.demage;
+
+        this._hp -= parseInt(GameCfg.player.demage) * parseInt(GameCfg.player.bulletPowerLevel);
         this._refresh(this._hp);
         let data = {
             demage: GameCfg.player.demage

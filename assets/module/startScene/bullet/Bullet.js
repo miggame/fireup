@@ -37,7 +37,7 @@ cc.Class({
     },
 
     update(dt) {
-        this.node.y += GameCfg.bulletSpeed * dt;
+        this.node.y += parseInt(GameCfg.player.bulletSpeed) * parseInt(GameCfg.player.bulletSpeedLevel) * dt;
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y > h / 2) {

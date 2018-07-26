@@ -110,10 +110,12 @@ cc.Class({
             this.lblOwnedScore.string = this._ownedScore;
         }
 
-        let bulletSpeed = Util.getBulletSpeedOfPlayerByPlayerIndex();
-        let bulletPower = Util.getBulletPowerOfPlayerByPlayerIndex();
-        this.lblBulletPower.string = bulletPower;
-        this.lblBulletSpeed.string = bulletSpeed;
+        // let bulletSpeed = Util.getBulletSpeedOfPlayerByPlayerIndex();
+        // let bulletPower = Util.getBulletPowerOfPlayerByPlayerIndex();
+        // this.lblBulletPower.string = bulletPower;
+        // this.lblBulletSpeed.string = bulletSpeed;
+        this.lblBulletPower.string = parseInt(GameCfg.player.bulletPowerLevel) * parseInt(GameCfg.player.demage);
+        this.lblBulletSpeed.string = parseInt(GameCfg.player.bulletSpeedLevel) * parseInt(GameCfg.player.bulletSpeed);
     },
 
     _initPlayer() {
@@ -226,8 +228,8 @@ cc.Class({
         UIMgr.createPrefab(this.upgradePre, function (root, ui) {
             this.addNode.addChild(root);
             let script = ui.getComponent('Upgrade');
-            // let data = GameCfg.player;
-            // script.initView(data);
+            let data = GameCfg.player;
+            script.initView(data);
         }.bind(this));
     },
 
@@ -235,7 +237,7 @@ cc.Class({
         let rewardArr = _.values(GameData.reward);
         let tempReward = _.sample(rewardArr);
         let reward = tempReward.type;
-        console.log('reward: ', reward);
+
         if (reward === 0) {
             return;
         }

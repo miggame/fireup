@@ -854,10 +854,8 @@
     "_fontSize": 40,
     "_lineHeight": 50,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "99bcb20e-22ed-42a8-9ed4-a43c622d32a4"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_N$string": "统计数据",
     "_N$horizontalAlign": 1,
@@ -1170,10 +1168,8 @@
     "_fontSize": 40,
     "_lineHeight": 50,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "99bcb20e-22ed-42a8-9ed4-a43c622d32a4"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_N$string": "射击速度",
     "_N$horizontalAlign": 1,
@@ -1408,10 +1404,8 @@
     "_fontSize": 40,
     "_lineHeight": 50,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "99bcb20e-22ed-42a8-9ed4-a43c622d32a4"
-    },
-    "_isSystemFontUsed": false,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_N$string": "射击力量",
     "_N$horizontalAlign": 1,

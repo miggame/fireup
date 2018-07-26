@@ -91,7 +91,7 @@ module.exports = {
 
     changeSpriteImg(path, sprite) {
         cc.loader.loadRes(path, cc.SpriteFrame, function (err, spriteFrame) {
-            sprite.spriteFrame = spriteFrame;
+            sprite.node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
         });
     }
 };

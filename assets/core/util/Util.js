@@ -130,13 +130,21 @@ module.exports = {
         }
     },
 
+    upgradeSpeedLevelGameCfgOfPlayer() {
+        GameCfg.player.bulletSpeedLevel++;
+    },
+
+    upgradePowerLevelGameCfgOfPlayer() {
+        GameCfg.player.bulletPowerLevel++;
+    },
+
     getBulletNumOfPlayerByPlayerIndex() {
         let index = GameCfg.player.index;
-        console.log('index: ', index);
+
         let tempArr = _.values(GameData.player);
         for (const item of tempArr) {
             if (item.index === index) {
-                console.log('item: ', item);
+
                 return item.bulletNum;
             }
         }
@@ -168,5 +176,26 @@ module.exports = {
 
     getOwnedScore() {
         return cc.sys.localStorage.getItem('ownedScore');
+    },
+
+    getSpeedCost(level) {
+        let cost = null;
+        let upgradeArr = _.values(GameData.upgrade);
+        for (const item of upgradeArr) {
+            if (item.bulletSpeedLevel === level) {
+                cost = item.bulletSpeedCost;
+                return cost;
+            }
+        }
+    },
+    getPowerCost(level) {
+        let cost = null;
+        let upgradeArr = _.values(GameData.upgrade);
+        for (const item of upgradeArr) {
+            if (item.bulletPowerLevel === level) {
+                cost = item.bulletPowerCost;
+                return cost;
+            }
+        }
     }
 }

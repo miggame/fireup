@@ -61,6 +61,9 @@ cc.Class({
             let locked = data.locked;
             let path = 'uiModule/player/player' + index;
             UIMgr.changeSpriteImg(path, this.spPlayer);
+            // cc.loader.loadRes(path, cc.SpriteFrame, function (err, spriteFrame) {
+            //     this.spPlayer.spriteFrame = spriteFrame;
+            // }.bind(this));
             this.spBg.node.active = true;//解锁
             this.spMask.node.active = locked === 0 ? true : false;
             this.checkToggle.isChecked = curPlayerData.index === index ? true : false;

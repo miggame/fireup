@@ -12,10 +12,12 @@ module.exports = {
     player: {
         index: 0,
         type: 'starter',
-        demage: 50,
-        bulletSpeed: 1000,
+        demage: 10,
+        bulletSpeed: 500,
         bulletNum: 1,
-        locked: 1
+        locked: 1,
+        bulletSpeedLevel: 1,
+        bulletPowerLevel: 1
     },
     ball: {
         color: '#ffffff',

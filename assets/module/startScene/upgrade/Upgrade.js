@@ -12,6 +12,7 @@ cc.Class({
         lblPowerLevel: { displayName: 'lblPowerLevel', default: null, type: cc.Label },
         lblPowerCost: { displayName: 'lblPowerCost', default: null, type: cc.Label },
         lblOwnedScore: { displayName: 'lblOwnedScore', default: null, type: cc.Label },
+        _data: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -30,6 +31,7 @@ cc.Class({
 
         this.touchLayer.on('touchend', function (event) {
             UIMgr.destroyUI(this);
+            cc.director.loadScene('StartScene');
         }.bind(this));
         this.lblOwnedScore.string = Util.getOwnedScore();
     },
@@ -41,14 +43,45 @@ cc.Class({
     // update (dt) {},
 
     onBtnClickToUpgradeSpeed() {
-
+        let ownedScore = Util.getOwnedScore();
+        let speedCost = Util.getSpeedCost(this._data.bulletSpeedLevel + 1);
+        if (parseInt(speedCost) > parseInt(ownedScore)) {
+            return;
+        }
+        let left = parseInt(ownedScore) - parseInt(speedCost);
+        Util.saveOwnedScore(left);
+        this.lblOwnedScore.string = left;
+        Util.upgradeSpeedLevelGameCfgOfPlayer();
+        this.lblSpeedLevel.string = this._data.bulletSpeedLevel + 1;
+        this.lblSpeedCost.string = Util.getSpeedCost(this._data.bulletSpeedLevel + 1);
     },
 
     onBtnClickToUpgradePower() {
-
+        let ownedScore = Util.getOwnedScore();
+        let powerCost = Util.getSpeedCost(this._data.bulletPowerLevel + 1);
+        if (parseInt(powerCost) > parseInt(ownedScore)) {
+            return;
+        }
+        let left = parseInt(ownedScore) - parseInt(powerCost);
+        Util.saveOwnedScore(left);
+        this.lblOwnedScore.string = left;
+        Util.upgradePowerLevelGameCfgOfPlayer();
+        this.lblPowerLevel.string = this._data.bulletPowerLevel + 1;
+        this.lblPowerCost.string = Util.getPowerCost(this._data.bulletPowerLevel + 1);
     },
 
     initView(data) {
+        this._data = data;
+        let curBulletPowerLevel = data.bulletPowerLevel;
+        let curBulletSpeedLevel = data.bulletSpeedLevel;
+        let nextPowerLevel = curBulletPowerLevel + 1;
+        let nextSpeedLevel = curBulletSpeedLevel + 1;
+        this.lblPowerLevel.string = nextPowerLevel;
+        this.lblSpeedLevel.string = nextSpeedLevel;
 
+        let speedCost = Util.getSpeedCost(nextSpeedLevel);
+        let powerCost = Util.getPowerCost(nextPowerLevel);
+        this.lblSpeedCost.string = speedCost;
+        this.lblPowerCost.string = powerCost;
     }
 });
