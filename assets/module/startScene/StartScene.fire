@@ -2763,6 +2763,10 @@
     "particleLayer": {
       "__id__": 69
     },
+    "_explodePool": null,
+    "explodeParticle": {
+      "__uuid__": "ac0abe11-2cd0-481c-97ff-fb36fa23e28e"
+    },
     "explodePre": {
       "__uuid__": "eaa22281-ee88-4ebc-88bb-4ac1cb1e8db4"
     },

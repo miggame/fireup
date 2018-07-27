@@ -58,15 +58,23 @@ cc.Class({
     },
 
     _refresh(data) {
-        let colorStr = Util.getColorByData(data, GameCfg.enemyColor);
-        this.node.color = new cc.color(colorStr);
-        this.lblHp.string = data;
         if (data <= 0) {
             let pos = {
                 pos: this.node.position
             };
             ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ExplodePos, pos);
             this._enemyPool.put(this.node);
+            return;
         }
+        let colorStr = Util.getColorByData(data, GameCfg.enemyColor);
+        this.node.color = new cc.color(colorStr);
+        this.lblHp.string = data;
+        // if (data <= 0) {
+        //     let pos = {
+        //         pos: this.node.position
+        //     };
+        //     ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ExplodePos, pos);
+        //     this._enemyPool.put(this.node);
+        // }
     },
 });

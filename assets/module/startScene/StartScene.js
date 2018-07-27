@@ -28,6 +28,8 @@ cc.Class({
         overPre: { displayName: 'overPre', default: null, type: cc.Prefab },
         addNode: { displayName: 'addNode', default: null, type: cc.Node },
         particleLayer: { displayName: 'particleLayer', default: null, type: cc.Node },
+        _explodePool: null,
+        explodeParticle: { displayName: 'explodeParticle', default: null, url: cc.ParticleAsset },
         explodePre: { displayName: 'explodePre', default: null, type: cc.Prefab },
         shopPre: { displayName: 'shopPre', default: null, type: cc.Prefab },
         rewardPre: { displayName: 'rewardPre', default: null, type: cc.Prefab },
@@ -69,9 +71,24 @@ cc.Class({
             this.showOver();
         } else if (msg === GameLocalMsg.Msg.ExplodePos) {
             let pos = data.pos;
-            let particleNode = cc.instantiate(this.explodePre);
-            this.particleLayer.addChild(particleNode);
-            particleNode.position = pos;
+            // let particleNode = cc.instantiate(this.explodePre);
+            // this.particleLayer.addChild(particleNode);
+            // particleNode.position = pos;
+
+            // let explodeNode = this._explodePool.get();
+            // if (!explodeNode) {
+            //     explodeNode = cc.instantiate(this.explodeNode);
+            // }
+            // this.particleLayer.addChild(explodeNode);
+            // explodeNode.position = pos;
+
+            let explodeNode = new cc.Node();
+            let particleSystem = explodeNode.addComponent(cc.ParticleSystem);
+            particleSystem.playOnLoad = true;
+            particleSystem.autoRemoveOnFinish = true;
+            particleSystem.file = this.explodeParticle;
+            explodeNode.position = pos;
+            this.particleLayer.addChild(explodeNode);
             AudioMgr.playExplodeEffectMusic();
         }
     },
@@ -89,6 +106,13 @@ cc.Class({
             let enemyPreTemp = cc.instantiate(this.enemyPre);
             this._enemyPool.put(enemyPreTemp);
         }
+
+        this._explodePool = new cc.NodePool('ExplodePool');
+        for (let j = 0; j < 5; ++j) {
+            let explodePreTemp = cc.instantiate(this.explodePre);
+            this._explodePool.put(explodePreTemp);
+        }
+
         // AudioPlayer.stopCurrentBackgroundMusic();
         cc.audioEngine.stopAll();
         AudioMgr.playMainMusic();
