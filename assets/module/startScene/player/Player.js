@@ -15,7 +15,8 @@ cc.Class({
         spPlayer: { displayName: 'spPlayer', default: null, type: cc.Sprite },
         _data: null,
         _rewardTimer: null,
-        _bulletOriNum: null
+        _bulletOriNum: null,
+        _keepFlag: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -45,7 +46,7 @@ cc.Class({
     },
     onLoad() {
         this._initMsg();
-
+        this._keepFlag = false;
         this._bulletPool = new cc.NodePool('BulletPool');
         for (let i = 0; i < 10; ++i) {
             let bulletPreTemp = cc.instantiate(this.bulletPre);
@@ -105,10 +106,33 @@ cc.Class({
 
     onCollisionEnter(other, self) {
         if (other.node.name === 'Enemy') {
-            this.node.removeAllChildren();
-            // this.node.removeFromParent();
-            ObserverMgr.dispatchMsg(GameLocalMsg.Msg.GameOver, null);
+            // this.node.removeAllChildren();
+            // ObserverMgr.dispatchMsg(GameLocalMsg.Msg.GameOver, null);
+            console.log('self.tag: ', self.tag);
+            // cc.game.pause();
+            if (self.tag === 0) {
+                this.node.removeAllChildren();
+                ObserverMgr.dispatchMsg(GameLocalMsg.Msg.GameOver, null);
+                console.log('3');
+                return;
+            } else if (self.tag === 1) {
+                console.log('1: ');
+                self.node.x = other.node.x + other.node.width / 2 + self.node.width / 2 + 5;
+                ObserverMgr.dispatchMsg(GameLocalMsg.Msg.KeepLeft, null);
+                this._keepFlag = true;
+                return;
+            } else if (self.tag === 2) {
+                console.log('2');
+                this._keepFlag = true;
+                self.node.x = other.node.x - other.node.width / 2 - self.node.width / 2 - 5;
+                ObserverMgr.dispatchMsg(GameLocalMsg.Msg.KeepRight, null);
+                return;
+            }
         }
+    },
+
+    onCollisionExit(other, self) {
+        this._keepFlag = false;
     },
 
     _countDown() {

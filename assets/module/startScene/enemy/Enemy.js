@@ -63,6 +63,7 @@ cc.Class({
                 pos: this.node.position
             };
             ObserverMgr.dispatchMsg(GameLocalMsg.Msg.ExplodePos, pos);
+
             this._enemyPool.put(this.node);
             return;
         }

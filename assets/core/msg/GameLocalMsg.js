@@ -9,6 +9,7 @@ window.GameLocalMsg = {
         Reward: 'GameLocalMsg.Msg.Reward',
         BuyPlayer: 'GameLocalMsg.Msg.BuyPlayer',
         BuyBall: 'GameLocalMsg.Msg.BuyBall',
-
+        KeepLeft: 'GameLcoalMsg.Msg.KeepLeft',
+        KeepRight: 'GameLcoalMsg.Msg.KeepRight'
     }
 }

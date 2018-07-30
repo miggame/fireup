@@ -486,16 +486,21 @@ module.exports = {
     enemy: {
         0: {
             type: 0,
-            num: 4,
-            hp: 15
+            num: 12,
+            hp: 5
         },
         1: {
             type: 1,
-            num: 5,
-            hp: 30
+            num: 4,
+            hp: 15
         },
         2: {
             type: 2,
+            num: 5,
+            hp: 30
+        },
+        3: {
+            type: 3,
             num: 12,
             hp: 45
         }
@@ -511,28 +516,28 @@ module.exports = {
             type: 0
         },
         3: {
-            type: 0
+            type: 1
         },
         4: {
-            type: 0
+            type: 1
         },
         5: {
-            type: 0
+            type: 1
         },
         6: {
-            type: 0
+            type: 1
         },
         7: {
-            type: 0
+            type: 1
         },
         8: {
-            type: 0
+            type: 1
         },
         9: {
-            type: 0
+            type: 1
         },
         10: {
-            type: 0
+            type: 1
         },
         11: {
             type: 1

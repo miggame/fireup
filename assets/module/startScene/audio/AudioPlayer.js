@@ -14,7 +14,7 @@ module.exports = {
 
     //停止当前正在播放的背景音乐
     stopCurrentBackgroundMusic() {
-        if (this._bgMusic) {
+        if (this._bgMusic !== null) {
             cc.audioEngine.stopMusic(this._bgMusic);
             this._bgMusic = null;
         }

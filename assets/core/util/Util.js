@@ -198,7 +198,7 @@ module.exports = {
     },
 
     updatePlayerLockedStatus(data) {
-        console.log('>>>>>>>>');
+
         let _tempPlayerArr = _.values(GameData.player);
         for (const item of _tempPlayerArr) {
             if (item.lockedCost <= parseInt(data)) {

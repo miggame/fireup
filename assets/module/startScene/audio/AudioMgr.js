@@ -32,7 +32,7 @@ module.exports = {
         AudioPlayer.playEffectMusic(url, false);
     },
 
-    playerUpgradeEffectMusic() {
+    playUpgradeEffectMusic() {
         let url = cc.url.raw('resources/music/upgrade.mp3');
         AudioPlayer.playEffectMusic(url, false);
     },
