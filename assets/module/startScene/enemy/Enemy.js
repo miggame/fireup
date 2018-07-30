@@ -38,6 +38,7 @@ cc.Class({
         let w = cc.view.getVisibleSize().width;
         let h = cc.view.getVisibleSize().height;
         if (this.node.y < -h) {
+            this.node.stopAllActions();
             this._enemyPool.put(this.node);
         }
     },

@@ -92,12 +92,12 @@ cc.Class({
 
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        // manager.enabledDebugDraw = true;
+        manager.enabledDebugDraw = true;
         // manager.enabledDrawBoundingBox = true;
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
 
         this._enemyPool = new cc.NodePool('EnemyPool');
-        for (let i = 0; i < 12; ++i) {
+        for (let i = 0; i < 20; ++i) {
             let enemyPreTemp = cc.instantiate(this.enemyPre);
             this._enemyPool.put(enemyPreTemp);
         }
@@ -269,7 +269,126 @@ cc.Class({
                     enemyPre.getComponent('Enemy').initHp(hp);
                 }
             } else if (type === 3) {
+                let index = 0;
+                for (let k = 0; k < 3; ++k) {
+                    for (let j = 0; j < 5; ++j) {
+                        if (index % 2 === 0) {
+                            index++;
+                            let enemyPre3 = this._enemyPool.get();
+                            if (!enemyPre3) {
+                                enemyPre3 = cc.instantiate(this.enemyPre);
+                            }
+                            this.enemyLayer.addChild(enemyPre3);
+                            enemyPre3.width = w / 5;
+                            enemyPre3.height = w / 5;
+                            enemyPre3.x = (j - 2.5) * enemyPre3.width + enemyPre3.width * 0.5;
+                            enemyPre3.y = enemyPre3.y = h + k * enemyPre3.height;
+                            enemyPre3.getComponent(cc.BoxCollider).size = enemyPre3.getContentSize();
+                            let hp3 = parseInt(baseHp * cc.random0To1() + baseHp);
+                            enemyPre3.getComponent('Enemy').initView(this._enemyPool);
+                            enemyPre3.getComponent('Enemy').initHp(hp3);
+                        } else {
+                            index++;
+                            continue;
+                        }
+                    }
+                }
+            } else if (type === 4) {
+                let doubleArr = GameData.type4;
+                let index = 0;
+                for (let p = 0; p < 3; ++p) {
+                    for (let q = 0; q < 5; ++q) {
+                        if (doubleArr[index].visible === 0) {
+                            index++;
+                            continue;
+                        } else {
+                            let enemyPre4 = this._enemyPool.get();
+                            if (!enemyPre4) {
+                                enemyPre4 = cc.instantiate(this.enemyPre);
+                            }
+                            this.enemyLayer.addChild(enemyPre4);
+                            enemyPre4.width = w / 5;
+                            enemyPre4.height = w / 5;
+                            enemyPre4.x = (q - 2.5) * enemyPre4.width + enemyPre4.width * 0.5;
+                            enemyPre4.y = enemyPre4.y = h + p * enemyPre4.height;
+                            enemyPre4.getComponent(cc.BoxCollider).size = enemyPre4.getContentSize();
+                            let hp4 = parseInt(baseHp * cc.random0To1() + baseHp);
+                            enemyPre4.getComponent('Enemy').initView(this._enemyPool);
+                            enemyPre4.getComponent('Enemy').initHp(hp4);
+                            if (doubleArr[index].static !== 0) {
+                                let moveLeftAct = cc.moveBy(1, cc.p(-enemyPre4.width, 0));
+                                let moveRightAct = moveLeftAct.reverse();
+                                enemyPre4.runAction(cc.repeatForever(cc.sequence(moveLeftAct, moveRightAct)));
+                            }
+                            index++;
+                        }
+                    }
+                }
 
+
+
+                // let doubleArr = [
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                //     {
+                //         visilbe: 0,
+                //         value: false
+                //     },
+                // ]
             }
         }
         this._createReward();

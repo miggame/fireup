@@ -487,12 +487,12 @@ module.exports = {
         0: {
             type: 0,
             num: 12,
-            hp: 5
+            hp: 15
         },
         1: {
             type: 1,
             num: 4,
-            hp: 15
+            hp: 5
         },
         2: {
             type: 2,
@@ -501,301 +501,92 @@ module.exports = {
         },
         3: {
             type: 3,
+            num: 8,
+            hp: 15
+        },
+        4: {
+            type: 4,
             num: 12,
-            hp: 45
+            hp: 15
+        }
+    },
+    type4: {
+        0: {
+            visible: 1,
+            static: 0
+        },
+        1: {
+            visible: 0,
+            static: 0
+        },
+        2: {
+            visible: 1,
+            static: 0
+        },
+        3: {
+            visible: 0,
+            static: 0
+        },
+        4: {
+            visible: 1,
+            static: 0
+        },
+        5: {
+            visible: 0,
+            static: 0
+        },
+        6: {
+            visible: 1,
+            static: 1
+        },
+        7: {
+            visible: 0,
+            static: 0
+        },
+        8: {
+            visible: 1,
+            static: 1
+        },
+        9: {
+            visible: 0,
+            static: 0
+        },
+        10: {
+            visible: 1,
+            static: 0
+        },
+        11: {
+            visible: 0,
+            static: 0
+        },
+        12: {
+            visible: 1,
+            static: 0
+        },
+        13: {
+            visible: 0,
+            static: 0
+        },
+        14: {
+            visible: 1,
+            static: 0
         }
     },
     level: {
         0: {
-            type: 0
+            type: 4
         },
         1: {
-            type: 0
+            type: 4
         },
         2: {
-            type: 0
+            type: 4
         },
         3: {
-            type: 1
+            type: 4
         },
         4: {
-            type: 1
-        },
-        5: {
-            type: 1
-        },
-        6: {
-            type: 1
-        },
-        7: {
-            type: 1
-        },
-        8: {
-            type: 1
-        },
-        9: {
-            type: 1
-        },
-        10: {
-            type: 1
-        },
-        11: {
-            type: 1
-        },
-        12: {
-            type: 1
-        },
-        13: {
-            type: 1
-        },
-        14: {
-            type: 1
-        },
-        15: {
-            type: 1
-        },
-        16: {
-            type: 1
-        },
-        17: {
-            type: 1
-        },
-        18: {
-            type: 1
-        },
-        19: {
-            type: 1
-        },
-        20: {
-            type: 1
-        },
-        21: {
-            type: 1
-        },
-        22: {
-            type: 1
-        },
-        23: {
-            type: 1
-        },
-        24: {
-            type: 1
-        },
-        25: {
-            type: 1
-        },
-        26: {
-            type: 1
-        },
-        27: {
-            type: 1
-        },
-        28: {
-            type: 1
-        },
-        29: {
-            type: 1
-        },
-        30: {
-            type: 1
-        },
-        31: {
-            type: 1
-        },
-        32: {
-            type: 1
-        },
-        33: {
-            type: 1
-        },
-        34: {
-            type: 1
-        },
-        35: {
-            type: 1
-        },
-        36: {
-            type: 1
-        },
-        37: {
-            type: 1
-        },
-        38: {
-            type: 1
-        },
-        39: {
-            type: 1
-        },
-        40: {
-            type: 1
-        },
-        41: {
-            type: 1
-        },
-        42: {
-            type: 1
-        },
-        43: {
-            type: 1
-        },
-        44: {
-            type: 1
-        },
-        45: {
-            type: 1
-        },
-        46: {
-            type: 1
-        },
-        47: {
-            type: 1
-        },
-        48: {
-            type: 1
-        },
-        49: {
-            type: 1
-        },
-        50: {
-            type: 1
-        },
-        51: {
-            type: 1
-        },
-        52: {
-            type: 1
-        },
-        53: {
-            type: 1
-        },
-        54: {
-            type: 1
-        },
-        55: {
-            type: 1
-        },
-        56: {
-            type: 1
-        },
-        57: {
-            type: 1
-        },
-        58: {
-            type: 1
-        },
-        59: {
-            type: 1
-        },
-        60: {
-            type: 1
-        },
-        61: {
-            type: 1
-        },
-        62: {
-            type: 1
-        },
-        63: {
-            type: 1
-        },
-        64: {
-            type: 1
-        },
-        65: {
-            type: 1
-        },
-        66: {
-            type: 1
-        },
-        67: {
-            type: 1
-        },
-        68: {
-            type: 1
-        },
-        69: {
-            type: 1
-        },
-        70: {
-            type: 1
-        },
-        71: {
-            type: 1
-        },
-        72: {
-            type: 1
-        },
-        73: {
-            type: 1
-        },
-        74: {
-            type: 1
-        },
-        75: {
-            type: 1
-        },
-        76: {
-            type: 1
-        },
-        77: {
-            type: 1
-        },
-        78: {
-            type: 1
-        },
-        79: {
-            type: 1
-        },
-        80: {
-            type: 1
-        },
-        81: {
-            type: 1
-        },
-        82: {
-            type: 1
-        },
-        83: {
-            type: 1
-        },
-        84: {
-            type: 1
-        },
-        85: {
-            type: 1
-        },
-        86: {
-            type: 1
-        },
-        87: {
-            type: 1
-        },
-        88: {
-            type: 1
-        },
-        89: {
-            type: 1
-        },
-        90: {
-            type: 1
-        },
-        91: {
-            type: 1
-        },
-        92: {
-            type: 1
-        },
-        93: {
-            type: 1
-        },
-        94: {
-            type: 1
-        },
-        95: {
-            type: 1
-        },
-        96: {
-            type: 1
+            type: 4
         }
     }
 };
