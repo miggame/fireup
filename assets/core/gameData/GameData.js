@@ -487,7 +487,7 @@ module.exports = {
         0: {
             type: 0,
             num: 12,
-            hp: 15
+            hp: 5
         },
         1: {
             type: 1,
@@ -497,17 +497,52 @@ module.exports = {
         2: {
             type: 2,
             num: 5,
-            hp: 30
+            hp: 5
         },
         3: {
             type: 3,
             num: 8,
-            hp: 15
+            hp: 5
         },
         4: {
             type: 4,
-            num: 12,
-            hp: 15
+            num: 15,
+            hp: 5
+        }
+    },
+    level: {
+        0: {
+            type: 0
+        },
+        1: {
+            type: 1
+        },
+        2: {
+            type: 2
+        },
+        3: {
+            type: 3
+        },
+        4: {
+            type: 4
+        },
+        5: {
+            type: 4
+        },
+        6: {
+            type: 4
+        },
+        7: {
+            type: 4
+        },
+        8: {
+            type: 4
+        },
+        9: {
+            type: 4
+        },
+        10: {
+            type: 4
         }
     },
     type4: {
@@ -570,23 +605,6 @@ module.exports = {
         14: {
             visible: 1,
             static: 0
-        }
-    },
-    level: {
-        0: {
-            type: 4
-        },
-        1: {
-            type: 4
-        },
-        2: {
-            type: 4
-        },
-        3: {
-            type: 4
-        },
-        4: {
-            type: 4
         }
     }
 };

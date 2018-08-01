@@ -11,32 +11,108 @@ cc.Class({
     extends: Observer,
 
     properties: {
-        playerPre: { displayName: 'playerPre', default: null, type: cc.Prefab },
-        playerLayer: { displayName: 'playerLayer', default: null, type: cc.Node },
-        tutorLayer: { displayName: 'tutorLayer', default: null, type: cc.Node },
+        playerPre: {
+            displayName: 'playerPre',
+            default: null,
+            type: cc.Prefab
+        },
+        playerLayer: {
+            displayName: 'playerLayer',
+            default: null,
+            type: cc.Node
+        },
+        tutorLayer: {
+            displayName: 'tutorLayer',
+            default: null,
+            type: cc.Node
+        },
         _startFlag: false,
         _player: null,
-        enemyLayer: { displayName: 'enemyLayer', default: null, type: cc.Node },
+        enemyLayer: {
+            displayName: 'enemyLayer',
+            default: null,
+            type: cc.Node
+        },
         _level: [],
-        enemyPre: { displayName: 'enemyPre', default: null, type: cc.Prefab },
+        enemyPre: {
+            displayName: 'enemyPre',
+            default: null,
+            type: cc.Prefab
+        },
         _enemyPool: null,
-        lblOwnedScore: { displayName: 'lblOwnedScore', default: null, type: cc.Label },
-        uiLayer: { displayName: 'uiLayer', default: null, type: cc.Node },
+        lblOwnedScore: {
+            displayName: 'lblOwnedScore',
+            default: null,
+            type: cc.Label
+        },
+        uiLayer: {
+            displayName: 'uiLayer',
+            default: null,
+            type: cc.Node
+        },
         _totalScore: null,
         _ownedScore: null,
-        lblTotalScore: { displayName: 'lblTotalScore', default: null, type: cc.Label },
-        overPre: { displayName: 'overPre', default: null, type: cc.Prefab },
-        addNode: { displayName: 'addNode', default: null, type: cc.Node },
-        particleLayer: { displayName: 'particleLayer', default: null, type: cc.Node },
+        lblTotalScore: {
+            displayName: 'lblTotalScore',
+            default: null,
+            type: cc.Label
+        },
+        overPre: {
+            displayName: 'overPre',
+            default: null,
+            type: cc.Prefab
+        },
+        addNode: {
+            displayName: 'addNode',
+            default: null,
+            type: cc.Node
+        },
+        particleLayer: {
+            displayName: 'particleLayer',
+            default: null,
+            type: cc.Node
+        },
         _explodePool: null,
-        explodeParticle: { displayName: 'explodeParticle', default: null, url: cc.ParticleAsset },
-        explodePre: { displayName: 'explodePre', default: null, type: cc.Prefab },
-        shopPre: { displayName: 'shopPre', default: null, type: cc.Prefab },
-        rewardPre: { displayName: 'rewardPre', default: null, type: cc.Prefab },
-        rewardLayer: { displayName: 'rewardLayer', default: null, type: cc.Node },
-        upgradePre: { displayName: 'upgradePre', default: null, type: cc.Prefab },
-        lblBulletPower: { displayName: 'lblBulletPower', default: null, type: cc.Label },
-        lblBulletSpeed: { displayName: 'lblBulletSpeed', default: null, type: cc.Label },
+        explodeParticle: {
+            displayName: 'explodeParticle',
+            default: null,
+            url: cc.ParticleAsset
+        },
+        explodePre: {
+            displayName: 'explodePre',
+            default: null,
+            type: cc.Prefab
+        },
+        shopPre: {
+            displayName: 'shopPre',
+            default: null,
+            type: cc.Prefab
+        },
+        rewardPre: {
+            displayName: 'rewardPre',
+            default: null,
+            type: cc.Prefab
+        },
+        rewardLayer: {
+            displayName: 'rewardLayer',
+            default: null,
+            type: cc.Node
+        },
+        upgradePre: {
+            displayName: 'upgradePre',
+            default: null,
+            type: cc.Prefab
+        },
+        lblBulletPower: {
+            displayName: 'lblBulletPower',
+            default: null,
+            type: cc.Label
+        },
+        lblBulletSpeed: {
+            displayName: 'lblBulletSpeed',
+            default: null,
+            type: cc.Label
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -92,7 +168,7 @@ cc.Class({
 
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        manager.enabledDebugDraw = true;
+        // manager.enabledDebugDraw = true;
         // manager.enabledDrawBoundingBox = true;
         this._level = Util.convertObjPropertyValueToArray(GameData.level);
 
